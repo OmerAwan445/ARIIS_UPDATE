@@ -4,9 +4,13 @@ import "@/app/css/index.css";
 import { highpriority } from "./api";
 import dynamic from "next/dynamic";
 import ModalMap from "../components/Modal/ModalMap";
-import MapComponent from "@/components/Map/MapComponent";
+// import MapComponent from "@/components/Map/MapComponent";
 import proj4 from "proj4";
 import { fetchExcelRecord } from "@/utils/fetchxlsdata";
+
+const MapComponent  = dynamic(() => import('@/components/Map/MapComponent'), {
+  ssr: false
+})
 
 export default function Home() {
   const [show, setShow] = useState(false);

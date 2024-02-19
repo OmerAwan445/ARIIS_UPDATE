@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Map, TileLayer, Polyline, MapContainer, Popup } from "react-leaflet";
+'use client';
+
+import { MapContainer, Polyline, Popup, TileLayer } from "react-leaflet";
 
 const MapComponent = ({state}) => {
 
