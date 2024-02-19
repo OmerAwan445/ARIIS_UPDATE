@@ -1,0 +1,32 @@
+.nav-tabs .nav-link.active {
+    background-color: transparent!important;
+    border: none;
+    border-bottom: 3px solid #4589FF!important;
+    color:#FFFFFF;
+}
+.nav-tabs .nav-link {
+    background: transparent!important;
+    border:none;
+    color: #FFFFFF;
+}
+.tab-content {
+    padding: 0;
+    border:none
+}
+.nav {
+    justify-content: space-between;
+}
+.nav-tabs {
+    border-width: 2px;
+    border-color: #525252;
+}
+.counter .count {
+    font-size: 2rem;
+    width: 130px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #a2191f;
+    border-radius: 10px;
+}

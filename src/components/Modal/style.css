@@ -1,0 +1,59 @@
+.customModalMap {
+  animation: slideInRight 0.5s ease-in-out;
+  /* Define your custom animation */
+}
+
+.customModalMap .MuiDataGrid-footerContainer {
+  display: none;
+}
+
+.customModalMap .modal-dialog {
+  position: absolute !important;
+  right: 0;
+  margin-top: 60px;
+  max-width: 55%;
+}
+
+.customModalMap .modal-dialog .modal-content {
+  background-color: #1F2937;
+  border: none;
+  color: #FFFFFF;
+}
+.customModalMap .close {
+  background-color: #6C7889;
+  padding: 10px;
+  border-radius: 50%;
+  width: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 10px;
+}
+.customModalMap .tag {
+  background-color: #A2191F;
+    color: #FFFFFF;
+    padding: 9px 2rem;
+    border-radius: 24px;
+    margin-left: 1rem
+    ;
+}
+.inspectionBox {
+  background-color: #111827;
+  padding: 1.5rem 0.5rem;
+}
+.inspectionBox li {
+  font-size: 16px;
+  list-style: none;
+  margin-bottom: 4px;
+}
+@keyframes slideInRight {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}

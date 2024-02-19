@@ -1,0 +1,77 @@
+.filterone, .filtertwo, .filterthree {
+    padding:0;
+    background-color: #1F2937;
+}
+.filterone button, .filtertwo button, .filterthree button{
+    width: 100%;
+    background-color: #111826;
+    border: none;
+    text-align: start;
+    color: #fff;
+    padding: 14px;
+    font-weight: bold;
+}
+.filterone button {
+    border-left:2px solid #971B1B;
+}
+.filtertwo button {
+    border-left:2px solid #EEBE14;
+}
+.filterthree button {
+    border-left:2px solid #059669;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+    border-radius: 10px;
+  }
+
+  /* Track */
+  .priortySection::-webkit-scrollbar-track {
+    background: #111827;
+  }
+
+  /* Handle */
+  .priortySection::-webkit-scrollbar-thumb {
+    background: #374151;
+    border-radius: 10px;
+
+  }
+
+  /* Handle on hover */
+  .priortySection::-webkit-scrollbar-thumb:hover {
+    background: #374151;
+  }
+.scSidebar{
+    /* height: 95vh; */
+    z-index: 1;
+}
+.priortySection {
+    height: 20vh;
+    overflow-y: scroll;
+}
+.priortySection li {
+    list-style: none;
+    color: #fff;
+    cursor: pointer;
+}
+.navbar svg {
+    color: #fff;
+    font-size: 20px;
+}
+.icon-bell {
+    font-size: 20px;
+}
+.sidebar-icon, .navbar-toggler{
+    font-size: 20px;
+    margin-right: 6px!important;
+    color: #6c7383;
+}
+
+.sidebar {
+    position: relative;
+}
+.sidebar li:last-child {
+    position: absolute;
+    bottom: 5rem;
+}

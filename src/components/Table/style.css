@@ -1,0 +1,8 @@
+.table{
+    border: none!important;
+    background-color:transparent;
+    color: #fff!important;
+}
+.table .MuiDataGrid-columnHeadersInner, .MuiDataGrid-columnHeaderDraggableContainer, .table .MuiDataGrid-withBorderColor{
+    border-color:#525252!important;
+}
