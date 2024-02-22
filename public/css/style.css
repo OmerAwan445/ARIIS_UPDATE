@@ -13282,7 +13282,7 @@ input[type="button"].btn-block {
   align-items: center;
   justify-content: space-between;
   padding: 0.5rem 1rem;
-  
+
 }
 
 .navbar .container,
@@ -28349,7 +28349,6 @@ div.tagsinput span.tag a {
 
 /* Sidebar */
 .sidebar {
-  min-height: calc(100vh - 60px);
   background: #374151;
   font-family: "Nunito", sans-serif;
   font-weight: 500;
