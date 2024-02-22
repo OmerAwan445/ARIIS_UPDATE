@@ -28267,14 +28267,15 @@ div.tagsinput span.tag a {
 }
 
 .page-body-wrapper {
-  min-height: calc(100vh - 60px);
+  /* min-height: calc(100vh - 60px); */
   display: -webkit-flex;
   display: flex;
   -webkit-flex-direction: row;
   flex-direction: row;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 60px;
+  margin-top: 60px;
+  /* padding-top: 60px; */
 }
 
 .page-body-wrapper.full-page-wrapper {
@@ -28316,7 +28317,7 @@ div.tagsinput span.tag a {
 
 /* Sidebar */
 .sidebar {
-  min-height: calc(100vh - 0px);
+  /* min-height: calc(100vh - 0px); */
   background: #fff;
   font-family: "Nunito", sans-serif;
   font-weight: 500;
