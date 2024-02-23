@@ -1,12 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
 import "@/app/css/index.css";
-import { highpriority } from "./api";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 import ModalMap from "../components/Modal/ModalMap";
+import { highpriority } from "./api";
 // import MapComponent from "@/components/Map/MapComponent";
-import proj4 from "proj4";
+import { AriisRunSectionIds, AriisRunTableData } from "@/DummyData";
+import ArisRunModal from "@/components/Modal/ArisRunModal";
 import { fetchExcelRecord } from "@/utils/fetchxlsdata";
+import proj4 from "proj4";
 
 const MapComponent  = dynamic(() => import('@/components/Map/MapComponent'), {
   ssr: false
@@ -14,6 +16,7 @@ const MapComponent  = dynamic(() => import('@/components/Map/MapComponent'), {
 
 export default function Home() {
   const [show, setShow] = useState(false);
+  const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [state, setState] = useState({
@@ -216,6 +219,17 @@ export default function Home() {
             handleClose={handleClose}
             title="Section ID #182 120 68"
           />
+          <ArisRunModal
+            show={isShowArisRunModal}
+            tableData={AriisRunTableData}
+            handleClose={()=> setIsShowArisRunModal(false)}
+            AriisRunSectionIds={AriisRunSectionIds}
+          />
+          {/* <ArisRunModal
+            show={isShowArisRunModal}
+            tableData={AriisRunTableData}
+            handleClose={()=> setIsShowArisRunModal(false)}
+          /> */}
           <div className="col-sm-12 col-md-3 col-lg-3 col-xxl-1 scSidebar">
             <div className="row flex-column align-items-between secsidebar">
               <div className="filterone col-12">
@@ -232,7 +246,7 @@ export default function Home() {
                 <button>Mid priority sections</button>
                 <ul className="priortySection">
                   {highpriority?.map((record) => (
-                    <li key={record?.id}>{record?.text}</li>
+                    <li onClick={()=> setIsShowArisRunModal(true)} key={record?.id}>{record?.text}</li>
                   ))}
                 </ul>
               </div>
