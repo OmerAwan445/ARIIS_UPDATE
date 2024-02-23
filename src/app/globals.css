@@ -3,6 +3,17 @@
   background-color: #1F2937;
 }
 
+.secondary-bg{
+  background-color: #111827;
+}
+
+.btn-close{
+  background-color: #505a6b;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+}
+
 .custom-table > thead > tr > th{
   color: white;
   font-weight: bolder;
@@ -13,6 +24,33 @@
   color: #C6C6C6;
   background-color: transparent;
 }
+
+.custom-table > tbody > tr:hover > td {
+  color: #fff !important;
+}
+
+.custom-table tbody tr:hover {
+  background-color: #111827;
+}
+
+.table-responsive{
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+/* Custom Media Queries  */
+@media (max-width: 768px) {
+  .custom-offcanvas-body {
+      overflow-y: auto; /* Make the body scrollable under md screens */
+  }
+}
+
+@media (min-width: 768px) {
+  .custom-offcanvas-body {
+      overflow: hidden; /* Hide overflow on screens larger than or equal to 768px */
+  }
+}
+
 
 @-moz-keyframes flash {
   0% {
@@ -10361,12 +10399,6 @@ pre code {
   }
 }
 
-.table-responsive {
-  display: block;
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
 
 .table-responsive > .table-bordered {
   border: 0;

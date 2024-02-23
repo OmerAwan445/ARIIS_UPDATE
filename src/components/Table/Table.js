@@ -52,7 +52,7 @@ export const Table = ({column, row, name}) => {
         rows={row}
         columns={column}
         disableRowSelectionOnClick
-      />
+        />
     </div>
   );
 }

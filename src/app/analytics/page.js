@@ -14,7 +14,6 @@ const AnalyticsPage = () => {
         <span>Analytics</span>
       </Stack>
       <h2 className='fw-bold text-white'>Analytics</h2>
-
       <Row className='mt-4 mb-2' style={{ color: "#D1D5DB" }}>
         <Col xs='auto' className='d-flex align-items-baseline'>
           <Image src={DateTimeIcon} width={15} height={15} className='me-2' alt='Date Time Icon' />
