@@ -7,10 +7,11 @@ import Modal from "react-bootstrap/Modal";
 import { Table } from "../Table/Table";
 import TabContent from "../Tabs/TabContent";
 import "./style.css";
-import InspectionModal from "./InspectionModal";
+import InspectionModal from "./InspectionModal/InspectionModal";
 import { RailProfile } from '@/DummyData'
 import MeasurementImage from '/public/DummyData/Images/Measuremnet.png'
 import { AnalysisAgainstThresholds } from '@/DummyData';
+import VideoImageModal from "./VideoImageModal/VideoImageModal";
 
 
 function ModalMap({ show, handleClose, title }) {
@@ -19,7 +20,8 @@ const [isShowOffcanvas, setIsShowOffcanvas] = useState({
   railWear: false,
   trackGuage: false,
   flangeway: false,
-  freeWheel: false
+  freeWheel: false,
+  crosslevel: false
 });
 
 function toggleOffcanvas (offcanvasName, state) {
@@ -91,6 +93,56 @@ function toggleOffcanvas (offcanvasName, state) {
     MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.freeWheel} handleClose={()=> toggleOffcanvas( 'freeWheel', false )}
     analysisTableData={AnalysisAgainstThresholds}
     />
+{/* ========= OTHER MODALS ======== */}
+
+{/* Cross Level  Modal */}
+    <InspectionModal title={"Cross Level"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/cross-level.png',
+          title: ""
+      }
+  ]}
+    MeasurementImage={MeasurementImage} isShow={false} handleClose ={()=> {}}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
+
+{/* Twist - Long & Short Modal */}
+    <InspectionModal title={"Twist - Long & Short"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/twist-long-short.png',
+          title: ""
+      }
+  ]}
+    MeasurementImage={MeasurementImage} isShow={false} handleClose={()=> {}}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
+{/* Super Elevation Modal */}
+    <InspectionModal title={"Super Elevation"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/cross-level.png',
+          title: ""
+      }
+  ]}
+
+    MeasurementImage={MeasurementImage} isShow={false} handleClose={()=> {}}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
+
+{/* Video Image Modal */}
+ {/*  <VideoImageModal isShow={true}  handleClose={()=>{}} isVideoModal={true}
+  title={"Panoramic Video of Tracks"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+  kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+  // imageUrls= {['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']}
+  videoUrl="https://www.youtube.com/watch?v=ZK-rNEhJIDs"
+  MeasurementImage={MeasurementImage}
+  /> */}
+
         <Modal
           show={show}
           onHide={handleClose}
