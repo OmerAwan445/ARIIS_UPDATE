@@ -4,9 +4,9 @@ const OffcanvasWrapper = ({ children, offCanvasStyle, bodyClassname, isShow, han
     return (
         <Offcanvas className="primary-bg text-white p-1 w-auto container-fluid" style={offCanvasStyle ?? { minWidth: "60vw" }} show={isShow} onHide={handleClose} backdrop="static" placement="end">
             <Offcanvas.Header>
-               { CloseButtonComponent && <CloseButtonComponent handleClose= {handleClose} /> }
+                {CloseButtonComponent && <CloseButtonComponent handleClose={handleClose} />}
             </Offcanvas.Header>
-            <Offcanvas.Body className={bodyClassname}>
+            <Offcanvas.Body className={bodyClassname ?? ''}>
                 {children}
             </Offcanvas.Body>
         </Offcanvas>

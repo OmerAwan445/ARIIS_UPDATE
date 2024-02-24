@@ -115,7 +115,7 @@ export const rowDetail = [
         note: "TBA"
     },
 ]
-//Ariis 
+//Ariis
 export const ColArisDetail = [
     {
         field: "date",
@@ -143,18 +143,22 @@ export const rowArisDetail = [
 export const inspection =[
     {
         id:1,
-        title:"Track Guage"
+        title:"Track Guage",
+        offCanvasName:"trackGuage"
     },
     {
         id:2,
-        title:"Flangeway"
+        title:"Flangeway",
+        offCanvasName:"flangeway"
     },
     {
         id:3,
-        title:"Free Wheel Clearance"
+        title:"Free Wheel Clearance",
+        offCanvasName:"freeWheel"
     },
     {
         id:4,
-        title:"Rail Profile Wear"
+        title:"Rail Profile Wear",
+        offCanvasName:"railWear"
     }
 ]

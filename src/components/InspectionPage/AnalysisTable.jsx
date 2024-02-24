@@ -1,12 +1,7 @@
-'use client';
 
-import { AnalysisAgainstThresholds } from '@/DummyData';
-import React, { useState } from 'react';
 import { Table } from 'react-bootstrap';
 
-const AnalysisTable = () => {
-  const [tableData, setTableData] = useState(AnalysisAgainstThresholds);
-
+const AnalysisTable = ({ tableData }) => {
   return (
     <div>
       <h6 className="text-uppercase fw-bold mb-3">RAIL PROFILE WEAR</h6>
