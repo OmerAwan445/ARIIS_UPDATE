@@ -1,18 +1,96 @@
 // components/ModalMap.js
 "use client";
-import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import "./style.css";
-import { Table } from "../Table/Table";
 import { ColArisDetail, columnDetail, inspection, rowArisDetail, rowDetail } from "@/app/api";
-import TabContent from "../Tabs/TabContent";
 import Link from "next/link";
+import { useState } from "react";
+import Modal from "react-bootstrap/Modal";
+import { Table } from "../Table/Table";
+import TabContent from "../Tabs/TabContent";
+import "./style.css";
+import InspectionModal from "./InspectionModal";
+import { RailProfile } from '@/DummyData'
+import MeasurementImage from '/public/DummyData/Images/Measuremnet.png'
+import { AnalysisAgainstThresholds } from '@/DummyData';
+
 
 function ModalMap({ show, handleClose, title }) {
+
+const [isShowOffcanvas, setIsShowOffcanvas] = useState({
+  railWear: false,
+  trackGuage: false,
+  flangeway: false,
+  freeWheel: false
+});
+
+function toggleOffcanvas (offcanvasName, state) {
+    setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
+}
+
+
   // console.log(columnDetail)
   return (
     <>
+        {/* Third Rail Position */}
+    <InspectionModal
+    title={"Third Rail Position"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/Left Rail Profile.png',
+          title: "Left Rail Profile"
+      },
+      {
+          imageUrl: '/DummyData/Images/Right Rail Profile.png',
+          title: "Right Rail Profile"
+      }
+  ]}
+    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.railWear} handleClose={()=> toggleOffcanvas( 'railWear', false )}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
+        {/* Track Gauge Modal */}
+    <InspectionModal title={"Track Guage"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/laserProfile-img.png',
+          title: "Left Rail Profile & Right Rail Profile"
+      }
+  ]}
+    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.trackGuage} handleClose={()=> toggleOffcanvas( 'trackGuage', false )}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
+    {/* Flangeway Modal */}
+    <InspectionModal title={"Flangeway"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/laserProfile-img2.png',
+          title: "Left Rail Profile"
+      },
+      {
+          imageUrl: '/DummyData/Images/laserProfile-img2.png',
+          title: "Right Rail Profile"
+      }
+  ]}
+    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.flangeway} handleClose={()=> toggleOffcanvas( 'flangeway', false )}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
+    {/* Free Wheel Clearance Modal */}
+    <InspectionModal title={"Free Wheel Clearance"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+    laserProfiles={[
+      {
+          imageUrl: '/DummyData/Images/laserProfile-img3.png',
+          title: "Left Rail Profile"
+      },
+      {
+          imageUrl: '/DummyData/Images/laserProfile-img3.png',
+          title: "Right Rail Profile"
+      }
+  ]}
+    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.freeWheel} handleClose={()=> toggleOffcanvas( 'freeWheel', false )}
+    analysisTableData={AnalysisAgainstThresholds}
+    />
         <Modal
           show={show}
           onHide={handleClose}
@@ -41,15 +119,13 @@ function ModalMap({ show, handleClose, title }) {
               <div className="col-4">
                   <h4 className="mt-4 mb-4">Inspections</h4>
                   <div className="inspectionBox">
-                  <ul>
+                  <div className="d-flex flex-column gap-4">
                   {
                     inspection?.map ( record => (
-                      <Link href="/inspection">
-                      <li key={record?.id}>{record?.title}</li>
-                      </Link>
+                      <span style={{cursor:"pointer"}} onClick={() =>toggleOffcanvas(record.offCanvasName, true) } key={record?.id}>{record?.title}</span>
                       ))
                     }
-                    </ul>
+                    </div>
                   </div>
 
                 </div>

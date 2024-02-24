@@ -4,7 +4,6 @@ import { IoClose } from "react-icons/io5";
 
 const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
     const isShowSectionIds = AriisRunSectionIds?.length > 0;
-
     return (
         <OffcanvasWrapper
             offCanvasStyle={{ minWidth: isShowSectionIds ? `60vw` : '25vw' }}
@@ -53,7 +52,7 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
 }
 
 
-function CloseButton ({ handleClose }){
+function CloseButton({ handleClose }) {
     return (
         <button onClick={handleClose} className="p-1 border-0" style={{ backgroundColor: "#6C7889", borderRadius: "100%" }}>
             <IoClose className="text-white" />
