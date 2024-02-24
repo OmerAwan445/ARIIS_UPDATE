@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { Col, Figure, FigureImage, Row } from "react-bootstrap";
 
