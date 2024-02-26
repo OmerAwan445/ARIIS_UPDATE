@@ -225,10 +225,7 @@ export default function Home() {
             handleClose={()=> setIsShowArisRunModal(false)}
             AriisRunSectionIds={AriisRunSectionIds}
           />
-        ========= TODO: ===================
-      // make a Reuseable OffCavas component for Trackgauge,  railprofile, and other modals and
-      // pass it the title, sectionId railId etc and  section image that is different in modals so it will render that part accordin to the modals and remaing sections will be same
-          {/* <ArisRunModal
+    {/* <ArisRunModal
             show={isShowArisRunModal}
             tableData={AriisRunTableData}
             handleClose={()=> setIsShowArisRunModal(false)}

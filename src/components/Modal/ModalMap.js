@@ -1,190 +1,121 @@
 // components/ModalMap.js
 "use client";
+import { RailProfile } from '@/DummyData';
 import { ColArisDetail, columnDetail, inspection, rowArisDetail, rowDetail } from "@/app/api";
-import Link from "next/link";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { Table } from "../Table/Table";
 import TabContent from "../Tabs/TabContent";
-import "./style.css";
 import InspectionModal from "./InspectionModal/InspectionModal";
-import { RailProfile } from '@/DummyData'
-import MeasurementImage from '/public/DummyData/Images/Measuremnet.png'
-import { AnalysisAgainstThresholds } from '@/DummyData';
 import VideoImageModal from "./VideoImageModal/VideoImageModal";
+import "./style.css";
+import MeasurementImage from '/public/DummyData/Images/Measuremnet.png';
 
 
 function ModalMap({ show, handleClose, title }) {
 
-const [isShowOffcanvas, setIsShowOffcanvas] = useState({
-  railWear: false,
-  trackGuage: false,
-  flangeway: false,
-  freeWheel: false,
-  crosslevel: false
-});
+  const [isShowOffcanvas, setIsShowOffcanvas] = useState({
+    trackGuage: false,
+    flangeway: false,
+    freeWheel: false,
+    crosslevel: false,
+    railProfileWear: false,
+    thirdRailPos: false,
+    thirdRailWear: false,
+    twistLongShort: false,
+    superElevation: false,
+    panromicVideoTrack: false,
+    railImage: false,
+    panoramicVideo: false,
+    railImage: false
+  });
 
-function toggleOffcanvas (offcanvasName, state) {
+  function toggleOffcanvas(offcanvasName, state) {
     setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
-}
+  }
 
 
-  // console.log(columnDetail)
+  console.log(inspection, "inspection")
   return (
     <>
-        {/* Third Rail Position */}
-    <InspectionModal
-    title={"Third Rail Position"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/Left Rail Profile.png',
-          title: "Left Rail Profile"
-      },
-      {
-          imageUrl: '/DummyData/Images/Right Rail Profile.png',
-          title: "Right Rail Profile"
-      }
-  ]}
-    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.railWear} handleClose={()=> toggleOffcanvas( 'railWear', false )}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
-        {/* Track Gauge Modal */}
-    <InspectionModal title={"Track Guage"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/laserProfile-img.png',
-          title: "Left Rail Profile & Right Rail Profile"
-      }
-  ]}
-    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.trackGuage} handleClose={()=> toggleOffcanvas( 'trackGuage', false )}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
-    {/* Flangeway Modal */}
-    <InspectionModal title={"Flangeway"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/laserProfile-img2.png',
-          title: "Left Rail Profile"
-      },
-      {
-          imageUrl: '/DummyData/Images/laserProfile-img2.png',
-          title: "Right Rail Profile"
-      }
-  ]}
-    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.flangeway} handleClose={()=> toggleOffcanvas( 'flangeway', false )}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
-    {/* Free Wheel Clearance Modal */}
-    <InspectionModal title={"Free Wheel Clearance"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/laserProfile-img3.png',
-          title: "Left Rail Profile"
-      },
-      {
-          imageUrl: '/DummyData/Images/laserProfile-img3.png',
-          title: "Right Rail Profile"
-      }
-  ]}
-    MeasurementImage={MeasurementImage} isShow={isShowOffcanvas.freeWheel} handleClose={()=> toggleOffcanvas( 'freeWheel', false )}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
-{/* ========= OTHER MODALS ======== */}
+      {inspection.map((record) =>
+        record.isVideoImageModal ? (
+          <VideoImageModal
+            key={record.id}
+            {...record}
+            isShow={isShowOffcanvas[record.offCanvasName]}
+            handleClose={() => toggleOffcanvas(record.offCanvasName, false)}
+          />
+          ) : (
+          <InspectionModal
+            key={record.id}
+            {...record}
+            isShow={isShowOffcanvas[record.offCanvasName]}
+            handleClose={() => toggleOffcanvas(record.offCanvasName, false)}
+          />
+        )
+      )}
 
-{/* Cross Level  Modal */}
-    <InspectionModal title={"Cross Level"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/cross-level.png',
-          title: ""
-      }
-  ]}
-    MeasurementImage={MeasurementImage} isShow={false} handleClose ={()=> {}}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
 
-{/* Twist - Long & Short Modal */}
-    <InspectionModal title={"Twist - Long & Short"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/twist-long-short.png',
-          title: ""
-      }
-  ]}
-    MeasurementImage={MeasurementImage} isShow={false} handleClose={()=> {}}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
-{/* Super Elevation Modal */}
-    <InspectionModal title={"Super Elevation"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-    kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-    laserProfiles={[
-      {
-          imageUrl: '/DummyData/Images/cross-level.png',
-          title: ""
-      }
-  ]}
+      {/* Video Modal */}
+      <VideoImageModal isShow={isShowOffcanvas.panoramicVideo} handleClose={() => toggleOffcanvas("panoramicVideo", false)} isVideoModal={true}
+        title={"Panoramic Video of Tracks"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+        kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+        videoUrl="https://www.youtube.com/watch?v=ZK-rNEhJIDs"
+        MeasurementImage={MeasurementImage}
+      />
 
-    MeasurementImage={MeasurementImage} isShow={false} handleClose={()=> {}}
-    analysisTableData={AnalysisAgainstThresholds}
-    />
+      {/* Image Modal */}
+      <VideoImageModal   isVideoModal={false}
+        title={"Panoramic Video of Tracks"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
+        kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
+        imageUrls= {['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']}
+        MeasurementImage={MeasurementImage}
+        isShow={isShowOffcanvas.railImage} handleClose={() => toggleOffcanvas("railImage", false)}
+      />
 
-{/* Video Image Modal */}
- {/*  <VideoImageModal isShow={true}  handleClose={()=>{}} isVideoModal={true}
-  title={"Panoramic Video of Tracks"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-  kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-  // imageUrls= {['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']}
-  videoUrl="https://www.youtube.com/watch?v=ZK-rNEhJIDs"
-  MeasurementImage={MeasurementImage}
-  /> */}
-
-        <Modal
-          show={show}
-          onHide={handleClose}
-          backdrop='static'
-          keyboard={false}
-          className='customModalMap'>
-          <Modal.Body>
-            <div className='row'>
-              <p onClick={handleClose} className="col-12 d-flex justify-content-start mb-3"><span className="close">X</span></p>
-              <div className='header d-flex align-items-baseline col-12'>
-                <h3 className="mb-3">{title}</h3>
-                <span className="tag">
-                  Non Complaint
-                </span>
-              </div>
-              <div className='tableSection col-12'>
-                <Table title="Section" column={columnDetail} row={rowDetail} name={'Section details'} />
-              </div>
-              <div className='tableSection col-8'>
-                <Table title="Section" column={ColArisDetail} row={rowArisDetail} name={'ARIIS runs'} />
-                <div>
-                  <h4 className="mt-5">TCI</h4>
-                  <TabContent />
-                </div>
-              </div>
-              <div className="col-4">
-                  <h4 className="mt-4 mb-4">Inspections</h4>
-                  <div className="inspectionBox">
-                  <div className="d-flex flex-column gap-4">
-                  {
-                    inspection?.map ( record => (
-                      <span style={{cursor:"pointer"}} onClick={() =>toggleOffcanvas(record.offCanvasName, true) } key={record?.id}>{record?.title}</span>
-                      ))
-                    }
-                    </div>
-                  </div>
-
-                </div>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop='static'
+        keyboard={false}
+        className='customModalMap'>
+        <Modal.Body>
+          <div className='row'>
+            <p onClick={handleClose} className="col-12 d-flex justify-content-start mb-3"><span className="close">X</span></p>
+            <div className='header d-flex align-items-baseline col-12'>
+              <h3 className="mb-3">{title}</h3>
+              <span className="tag">
+                Non Complaint
+              </span>
             </div>
+            <div className='tableSection col-12'>
+              <Table title="Section" column={columnDetail} row={rowDetail} name={'Section details'} />
+            </div>
+            <div className='tableSection col-8'>
+              <Table title="Section" column={ColArisDetail} row={rowArisDetail} name={'ARIIS runs'} />
+              <div>
+                <h4 className="mt-5">TCI</h4>
+                <TabContent />
+              </div>
+            </div>
+            <div className="col-4">
+              <h4 className="mt-4 mb-4">Inspections</h4>
+              <div className="inspectionBox">
+                <div className="d-flex flex-column gap-4">
+                  {
+                    inspection?.map(record => (
+                      <span style={{ cursor: "pointer" }} onClick={() => toggleOffcanvas(record.offCanvasName, true)} key={record?.id}>{record?.title}</span>
+                    ))
+                  }
+                </div>
+              </div>
 
-          </Modal.Body>
-        </Modal>
+            </div>
+          </div>
+
+        </Modal.Body>
+      </Modal>
     </>
   );
 }
