@@ -5,7 +5,9 @@ import ModalHeader from '../ModalHeader'
 import OffcanvasWrapper from '../OffcanvasWrapper'
 import { BackBtn } from '../InspectionModal/BackBtn'
 
-export default function VideoImageModal({title, runNum, sectionNum, kmRangeStrt, kmRangeEnd, dateTime, MeasurementImage, isShow, handleClose, isVideoModal, imageUrls, videoUrl}) {
+export default function VideoImageModal({title, runNum, sectionNum, kmRangeStrt, kmRangeEnd, dateTime, MeasurementImage, isShow, handleClose, imageUrls, videoUrl}) {
+  const isVideoModal = videoUrl !== undefined;
+
   return (
     <OffcanvasWrapper offCanvasStyle={{ minWidth: '90vw', zIndex:"99999" }} isShow={isShow} handleClose={handleClose}
     CloseButtonComponent={BackBtn}>

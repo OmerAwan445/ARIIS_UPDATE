@@ -1,3 +1,6 @@
+import { AnalysisAgainstThresholds, RailProfile } from "@/DummyData"
+import MeasurementImage from '/public/DummyData/Images/Measuremnet.png'
+
 export const highpriority = [
     {
         id: '1',
@@ -142,23 +145,215 @@ export const rowArisDetail = [
 ]
 export const inspection =[
     {
-        id:1,
-        title:"Track Guage",
-        offCanvasName:"trackGuage"
+        id: 1,
+        title: "Track Guage",
+        offCanvasName: "trackGuage",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/laserProfile-img.png',
+                title: "Left Rail Profile & Right Rail Profile"
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
     },
     {
         id:2,
         title:"Flangeway",
-        offCanvasName:"flangeway"
+        offCanvasName:"flangeway",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/laserProfile-img2.png',
+                title: "Left Rail Profile"
+            },
+            {
+                imageUrl: '/DummyData/Images/laserProfile-img2.png',
+                title: "Right Rail Profile"
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
     },
     {
         id:3,
         title:"Free Wheel Clearance",
-        offCanvasName:"freeWheel"
+        offCanvasName:"freeWheel",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/laserProfile-img3.png',
+                title: "Left Rail Profile"
+              },
+            {
+                imageUrl: '/DummyData/Images/laserProfile-img3.png',
+                title: "Right Rail Profile"
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
     },
     {
         id:4,
         title:"Rail Profile Wear",
-        offCanvasName:"railWear"
+        offCanvasName:"railProfileWear",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/Left Rail Profile.png',
+                title: "Left Rail Profile"
+              },
+            {
+                imageUrl: '/DummyData/Images/Right Rail Profile.png',
+                title: "Right Rail Profile"
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:5,
+        title:"Third Rail Position",
+        offCanvasName:"thirdRailPos",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/Third-rail.png',
+                title: "Left Rail Profile"
+            },
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:6,
+        title:"Third Rail Wear",
+        offCanvasName:"railWear",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/Third-rail.png',
+                title: "Left Rail Profile"
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:7,
+        title:"Cross Level",
+        offCanvasName:"crosslevel",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/cross-level.png',
+                title: ""
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:8,
+        title:"Twist - Long & Short",
+        offCanvasName:"twistLongShort",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/twist-long-short.png',
+                title: ""
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:9,
+        title:"Super Elevation",
+        offCanvasName:"superElevation",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/cross-level.png',
+                title: ""
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds,
+        isVideoImageModal: false,
+    },
+    {
+        id:10,
+        title:"Panoramic Video of Tracks",
+        offCanvasName:"panoramicVideo",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        isVideoImageModal: true,
+        videoUrl: "https://www.youtube.com/watch?v=ZK-rNEhJIDs",
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        //imageUrls: ['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']
+    },
+    {
+        id:11,
+        title:"Rail Image",
+        offCanvasName:"railImage",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        isVideoImageModal: true,
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds,
+        imageUrls: ['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']
     }
 ]
