@@ -55,25 +55,6 @@ function ModalMap({ show, handleClose, title }) {
           />
         )
       )}
-
-
-      {/* Video Modal */}
-      <VideoImageModal isShow={isShowOffcanvas.panoramicVideo} handleClose={() => toggleOffcanvas("panoramicVideo", false)} isVideoModal={true}
-        title={"Panoramic Video of Tracks"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-        kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-        videoUrl="https://www.youtube.com/watch?v=ZK-rNEhJIDs"
-        MeasurementImage={MeasurementImage}
-      />
-
-      {/* Image Modal */}
-      <VideoImageModal   isVideoModal={false}
-        title={"Panoramic Video of Tracks"} runNum={RailProfile.runNum} sectionNum={RailProfile.sectionNum}
-        kmRangeStrt={RailProfile.kmRangeStrt} kmRangeEnd={RailProfile.kmRangeEnd} dateTime={RailProfile.dateTime}
-        imageUrls= {['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']}
-        MeasurementImage={MeasurementImage}
-        isShow={isShowOffcanvas.railImage} handleClose={() => toggleOffcanvas("railImage", false)}
-      />
-
       <Modal
         show={show}
         onHide={handleClose}
