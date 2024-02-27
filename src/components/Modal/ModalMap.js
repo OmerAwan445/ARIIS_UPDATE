@@ -3,7 +3,7 @@
 import { ColArisDetail, columnDetail, inspection, rowArisDetail, rowDetail } from "@/app/api";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { CustomTable, Table } from '../Table/Table';
+import { CustomTable, Table } from '../Table/CustomTable';
 import TabContent from "../Tabs/TabContent";
 import InspectionModal from "./InspectionModal/InspectionModal";
 import VideoImageModal from "./VideoImageModal/VideoImageModal";
