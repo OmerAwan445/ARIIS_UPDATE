@@ -9,17 +9,19 @@ export const CustomTable = ({ columns, rows ,title}) => {
         <Table className='custom-table'>
           <thead>
           <tr>
-          {columns.map((column, index) => (
+          {columns?.map((column, index) => (
             <th key={index}>{column}</th>
           ))}
         </tr>
           </thead>
           <tbody>
-            <tr>
-              {rows.map((cellData, cellIndex) => (
+          {rows?.map((rowData, rowIndex) => (
+            <tr key={rowIndex}>
+              {rowData.map((cellData, cellIndex) => (
                 <td key={cellIndex}>{cellData}</td>
               ))}
             </tr>
+          ))}
           </tbody>
         </Table>
       </div>
