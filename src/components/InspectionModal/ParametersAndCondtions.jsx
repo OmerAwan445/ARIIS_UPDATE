@@ -11,18 +11,21 @@ const ParametersAndCondtions = ({ sectionId }) => {
     <div>
       <h6 className="text-uppercase fw-bold mb-3">Section id # {sectionId}</h6>
       <h3 className="fw-lighter">Design parameters & condition thresholds</h3>
-      <Table className='custom-table'>
+      <Table className='custom-table mt-4'>
         <thead>
+        <tr>
+            <th colSpan="2" className='fs-4 py-2'> Rail wear limits</th>
+          </tr>
           <tr>
             <th>#</th>
-            <th>Left</th>
+            <th>Limit (mm)</th>
           </tr>
         </thead>
         <tbody>
-          {tableData.map((row, index) => (
-            <tr key={index}>
+          {tableData.map(row => (
+            <tr key={row.id}>
               <td>{row.direction}</td>
-              <td>{row.left}</td>
+              <td>{row.limit}</td>
             </tr>
           ))}
         </tbody>

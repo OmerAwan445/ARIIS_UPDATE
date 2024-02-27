@@ -10,7 +10,7 @@ function Tabscontent() {
       className="mb-3 tci"
     >
       <Tab eventKey="home" title="TCI Value">
-      <div className='header d-flex align-items-baseline col-12 p-0'>
+      <div className='header d-flex align-items-baseline col-12 p-0 text-disabled'>
               <h6 className="mb-3">TRACK CONDITION INDEX</h6>
               <span className="tag">
                 Above Thresholds
@@ -21,9 +21,9 @@ function Tabscontent() {
             </div>
       </Tab>
       <Tab eventKey="profile" title="Contributing factors">
-      
+
       </Tab>
-      
+
     </Tabs>
   );
 }

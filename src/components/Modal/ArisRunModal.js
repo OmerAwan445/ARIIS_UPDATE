@@ -54,7 +54,7 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
 
 function CloseButton({ handleClose }) {
     return (
-        <button onClick={handleClose} className="p-1 border-0" style={{ backgroundColor: "#6C7889", borderRadius: "100%" }}>
+        <button onClick={handleClose} className="p-0 border-0" style={{ backgroundColor: "#6C7889", borderRadius: "100%",width:"30px", height:"30px" }}>
             <IoClose className="text-white" />
         </button>
     )

@@ -27,6 +27,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #a2191f;
+    background: #808080;
+    color: #9e9d9d;
+    opacity: 0.75;
     border-radius: 10px;
+}
+.text-disabled{
+    color: #808080;
 }

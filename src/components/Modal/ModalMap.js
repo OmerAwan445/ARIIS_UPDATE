@@ -1,15 +1,13 @@
 // components/ModalMap.js
 "use client";
-import { RailProfile } from '@/DummyData';
 import { ColArisDetail, columnDetail, inspection, rowArisDetail, rowDetail } from "@/app/api";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { Table } from "../Table/Table";
+import { CustomTable, Table } from '../Table/Table';
 import TabContent from "../Tabs/TabContent";
 import InspectionModal from "./InspectionModal/InspectionModal";
 import VideoImageModal from "./VideoImageModal/VideoImageModal";
 import "./style.css";
-import MeasurementImage from '/public/DummyData/Images/Measuremnet.png';
 
 
 function ModalMap({ show, handleClose, title }) {
@@ -70,25 +68,33 @@ function ModalMap({ show, handleClose, title }) {
                 Non Complaint
               </span>
             </div>
-            <div className='tableSection col-12'>
-              <Table title="Section" column={columnDetail} row={rowDetail} name={'Section details'} />
+            <div className='tableSection col-12 mt-4 mb-5'>
+              <CustomTable columns={columnDetail} rows={rowDetail} title={'Section details'} />
             </div>
             <div className='tableSection col-8'>
-              <Table title="Section" column={ColArisDetail} row={rowArisDetail} name={'ARIIS runs'} />
+              <CustomTable columns={ColArisDetail} rows={rowArisDetail} title={'ARIIS runs'} />
               <div>
-                <h4 className="mt-5">TCI</h4>
+                <h4 className="mt-5 fs-4">TCI</h4>
                 <TabContent />
               </div>
             </div>
             <div className="col-4">
               <h4 className="mt-4 mb-4">Inspections</h4>
-              <div className="inspectionBox">
-                <div className="d-flex flex-column gap-4">
-                  {
-                    inspection?.map(record => (
-                      <span style={{ cursor: "pointer" }} onClick={() => toggleOffcanvas(record.offCanvasName, true)} key={record?.id}>{record?.title}</span>
-                    ))
-                  }
+              <div className="secondary-bg">
+                <div className="d-flex flex-column px-2 ">
+                  {inspection?.map((record, index) => (
+                    <>
+                      <button
+                        key={record?.id}
+                        onClick={() => toggleOffcanvas(record.offCanvasName, true)}
+                        className='inspection-list-color rounded py-3 border-0 text-start'
+                        style={record.title === 'Rail Profile Wear' ? { backgroundColor: "#a2191f" } : { backgroundColor: "transparent" }}
+                      >
+                        <span className='d-block'>{record?.title}</span>
+                        </button>
+                        {(index + 1) % 4 === 0 && <hr className='my-3' style={{backgroundColor:"#C6C6C6"}} />}
+                    </>
+                  ))}
                 </div>
               </div>
 

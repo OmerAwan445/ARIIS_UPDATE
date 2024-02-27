@@ -3,7 +3,7 @@ import "@/app/css/index.css";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import ModalMap from "../components/Modal/ModalMap";
-import { highpriority } from "./api";
+import { greenpriority, highpriority, midpriority } from "./api";
 // import MapComponent from "@/components/Map/MapComponent";
 import { AriisRunSectionIds, AriisRunTableData } from "@/DummyData";
 import ArisRunModal from "@/components/Modal/ArisRunModal";
@@ -105,78 +105,17 @@ export default function Home() {
         });
 
         console.log("Valid Long Lat Objects", validLatLngObjects);
-
         validLatLngObjects = [
-          [25.24362927, 55.31594862],
-          [25.2418743, 55.31635697],
-          [25.2418743, 55.31635697],
-          [25.24184218, 55.31636444],
-          [25.24181007, 55.3163719],
-          [25.24177795, 55.31637935],
-          [25.24174582, 55.31638678],
-          [25.2417137, 55.31639418],
-          [25.24168156, 55.31640155],
-          [25.24164942, 55.31640887],
-          [25.24161726, 55.31641615],
-          [25.2415851, 55.31642337],
-          [25.24155293, 55.31643053],
-          [25.24152074, 55.31643761],
-          [25.24152074, 55.31643761],
-          [25.24141776, 55.31645976],
-          [25.24131464, 55.31648112],
-          [25.24121139, 55.31650169],
-          [25.24110801, 55.31652147],
-          [25.2410045, 55.31654046],
-          [25.24090088, 55.31655866],
-          [25.24079715, 55.31657608],
-          [25.24069331, 55.31659269],
-          [25.24058937, 55.31660852],
-          [25.24048533, 55.31662355],
-          [25.2403812, 55.31663779],
-          [25.2403812, 55.31663779],
-          [25.24034861, 55.31664209],
-          [25.24031601, 55.31664631],
-          [25.2402834, 55.31665047],
-          [25.24025079, 55.31665457],
-          [25.24021817, 55.31665862],
-          [25.24018555, 55.31666263],
-          [25.24015292, 55.3166666],
-          [25.24012029, 55.31667055],
-          [25.24008766, 55.31667447],
-          [25.24005503, 55.31667838],
-          [25.24002239, 55.31668228],
-          [25.24002239, 55.31668228],
-          [25.23682025, 55.31706514],
-          [25.23682025, 55.31706514],
-          [25.23674682, 55.3170739],
-          [25.23667339, 55.31708256],
-          [25.23659993, 55.31709102],
-          [25.23652644, 55.31709919],
-          [25.23645292, 55.31710695],
-          [25.23637936, 55.31711421],
-          [25.23630575, 55.31712086],
-          [25.23623209, 55.31712682],
-          [25.23615838, 55.31713197],
-          [25.23608462, 55.31713622],
-          [25.23601082, 55.31713946],
-          [25.23601082, 55.31713946],
-          [25.23596188, 55.31714101],
-          [25.23591293, 55.31714207],
-          [25.23586397, 55.31714265],
-          [25.23581501, 55.31714274],
-          [25.23576605, 55.31714234],
-          [25.2357171, 55.31714146],
-          [25.23566815, 55.31714009],
-          [25.23561922, 55.31713824],
-          [25.23557031, 55.31713589],
-          [25.23552141, 55.31713307],
-          [25.23547255, 55.31712975],
-          [25.23547255, 55.31712975],
-          [25.23539888, 55.31712385],
-          [25.23532529, 55.31711695],
-          [25.23525178, 55.31710914],
-          [25.23517833, 55.31710053],
-          [25.23510496, 55.31709123],
+          [ 25.24362927,55.31594862,],
+          [ 25.2418743, 55.31635697,],
+          [ 25.2418743, 55.31635697,],
+          [ 25.24184218,55.31636444,],
+          [ 25.24181007,55.3163719, ],
+          [ 25.24177795,55.31637935,],
+          [ 25.24174582,55.31638678,],
+          [ 25.2417137, 55.31639418,],
+          [ 25.24168156,55.31640155,],
+          [ 25.24164942,55.31640887,],
         ];
 
         console.log("Valid Long Lat Objects New", validLatLngObjects);
@@ -217,7 +156,7 @@ export default function Home() {
           <ModalMap
             show={show}
             handleClose={handleClose}
-            title="Section ID #182 120 68"
+            title="Section ID #G00002"
           />
           <ArisRunModal
             show={isShowArisRunModal}
@@ -236,9 +175,9 @@ export default function Home() {
               <div className="filterone col-12">
                 <button>High priority sections</button>
                 <ul className="priortySection">
-                  {state?.polylineData?.map((record, index) => (
+                    {highpriority.map((record, index) => (
                     <li onClick={() => handleShow()} key={index}>
-                      {record?.from_long}, {record?.from_lat}
+                      {record?.text}
                     </li>
                   ))}
                 </ul>
@@ -246,7 +185,7 @@ export default function Home() {
               <div className="filtertwo col-12 w-100">
                 <button>Mid priority sections</button>
                 <ul className="priortySection">
-                  {highpriority?.map((record) => (
+                  {midpriority?.map((record) => (
                     <li onClick={()=> setIsShowArisRunModal(true)} key={record?.id}>{record?.text}</li>
                   ))}
                 </ul>
@@ -254,7 +193,7 @@ export default function Home() {
               <div className="filterthree col-12 w-100">
                 <button>Green sections</button>
                 <ul className="priortySection">
-                  {highpriority?.map((record) => (
+                  {greenpriority?.map((record) => (
                     <li key={record?.id}>{record?.text}</li>
                   ))}
                 </ul>
