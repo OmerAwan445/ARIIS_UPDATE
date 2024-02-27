@@ -4,75 +4,135 @@ import MeasurementImage from '/public/DummyData/Images/Measuremnet.png'
 export const highpriority = [
     {
         id: '1',
-        text: "Section # 182 120 68"
+        text: "G00002"
     },
     {
         id: '2',
-        text: "Section # 182 120 68"
+        text: "G00003"
     },
     {
         id: '3',
-        text: "Section # 182 120 68"
+        text: "G00004"
     },
     {
         id: '4',
-        text: "Section # 182 120 68"
+        text: "G00008"
     },
     {
         id: '5',
-        text: "Section # 182 120 68"
+        text: "G00009"
     },
     {
         id: '6',
-        text: "Section # 182 120 68"
+        text: "G00010"
     },
     {
         id: '7',
-        text: "Section # 182 120 68"
+        text: "G00011"
     },
     {
         id: '8',
-        text: "Section # 182 120 68"
+        text: "G00012"
     },
     {
         id: '9',
-        text: "Section # 182 120 68"
+        text: "G00015"
     },
     {
         id: '10',
-        text: "Section # 182 120 68"
-    }, {
-        id: '11',
-        text: "Section # 182 120 68"
-    },
-    {
-        id: '12',
-        text: "Section # 182 120 68"
-    }, {
-        id: '13',
-        text: "Section # 182 120 68"
-    },
-    {
-        id: '14',
-        text: "Section # 182 120 68"
-    }, {
-        id: '15',
-        text: "Section # 182 120 68"
-    },
-    {
-        id: '16',
-        text: "Section # 182 120 68"
-    }, {
-        id: '17',
-        text: "Section # 182 120 68"
-    },
-    {
-        id: '18',
-        text: "Section # 182 120 68"
-    },
+        text: "G00027"
+    }
 ]
+
+export const midpriority = [
+    {
+        id: '1',
+        text: "G00005"
+    },
+    {
+        id: '2',
+        text: "G00007"
+    },
+    {
+        id: '3',
+        text: "G00013"
+    },
+    {
+        id: '4',
+        text: "G00014"
+    },
+    {
+        id: '5',
+        text: "G00017"
+    },
+    {
+        id: '6',
+        text: "G00019"
+    },
+    {
+        id: '7',
+        text: "G00020"
+    },
+    {
+        id: '8',
+        text: "G00021"
+    },
+    {
+        id: '9',
+        text: "G00022"
+    },
+    {
+        id: '10',
+        text: "G00023"
+    }
+]
+export const greenpriority = [
+    {
+        id: '1',
+        text: "G00001"
+    },
+    {
+        id: '2',
+        text: "G00006"
+    },
+    {
+        id: '3',
+        text: "G00016"
+    },
+    {
+        id: '4',
+        text: "G00018"
+    },
+    {
+        id: '5',
+        text: "G00024"
+    },
+    {
+        id: '6',
+        text: "G00025"
+    },
+    {
+        id: '7',
+        text: "G00026"
+    },
+    {
+        id: '8',
+        text: "G00028"
+    },
+    {
+        id: '9',
+        text: "G00029"
+    },
+    {
+        id: '10',
+        text: "G00030"
+    }
+]
+
+ export const columnDetail = ["Element","Chainage","Easting","Northing","Bearing","Note"]
+ export const rowDetail = ["Straight","88+238.283","4829.2829","36583.2839","257'23","TBA"];
 //Table columns and rows
-export const columnDetail = [
+/* export const columnDetail = [
     { field: 'id', headerName: 'ID', width: 90 },
     {
         field: "element",
@@ -117,9 +177,12 @@ export const rowDetail = [
         bearing: `257'23"`,
         note: "TBA"
     },
-]
+] */
 //Ariis
-export const ColArisDetail = [
+export const ColArisDetail = ["Date","Run"];
+export const rowArisDetail = ["11/03/2023", "Run # 384 385 87"]
+
+/* export const ColArisDetail = [
     {
         field: "date",
         headerName: 'Date',
@@ -141,8 +204,8 @@ export const rowArisDetail = [
         id: '2',
         date: "9/04/2023",
         run: "Run # 674 239 23"
-    },
-]
+    }
+    */
 export const inspection =[
     {
         id: 1,

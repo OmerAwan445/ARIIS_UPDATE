@@ -21,15 +21,15 @@
 }
 .customModalMap .close {
   background-color: #6C7889;
-  padding: 10px;
   border-radius: 50%;
-  width: 35px;
-  display: flex;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 12px;
 }
 .customModalMap .tag {
   background-color: #A2191F;
@@ -38,15 +38,6 @@
     border-radius: 24px;
     margin-left: 1rem
     ;
-}
-.inspectionBox {
-  background-color: #111827;
-  padding: 1.5rem 0.5rem;
-}
-.inspectionBox li {
-  font-size: 16px;
-  list-style: none;
-  margin-bottom: 4px;
 }
 @keyframes slideInRight {
   0% {

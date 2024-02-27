@@ -37,6 +37,14 @@
   overflow-y: scroll;
   height: 100vh;
 }
+.inspection-list-color{
+  color: #C6C6C6;
+}
+
+.inspection-list-color:hover{
+color: #fff;
+}
+
 
 /* Custom Media Queries  */
 @media (max-width: 768px) {

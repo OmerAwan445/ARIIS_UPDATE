@@ -1,9 +1,9 @@
 export const RailProfile = {
     runNum:"283 600",
-    sectionNum:"199 658 22",
+    sectionNum:"G00001",
     kmRangeStrt:"122.2",
     kmRangeEnd:"122.5",
-    dateTime:"18 May 2023 at 4.11am",
+    dateTime:"22 Feb 2024 at 4.11am",
 }
 
 
@@ -11,20 +11,20 @@ export const AnalysisAgainstThresholds = [
     {
       id: 1,
       direction: 'Horizontal',
-      left: '1.2mm',
-      right: '1.2mm',
+      left: '42.518',
+      right: '41.175',
     },
     {
       id: 2,
       direction: 'Vertical',
-      left: '12mm',
-      right: '2mm',
+      left: '71.953',
+      right: '71.730',
     },
     {
       id: 3,
-      direction: '45 deg',
-      left: '1.12mm',
-      right: '1.1mm',
+      direction: '45',
+      left: '44.607',
+      right: '45.628',
     },
   ];
 
@@ -32,12 +32,17 @@ export const AnalysisAgainstThresholds = [
     {
       id: 1,
       direction: 'Horizontal',
-      left: '1.2mm',
+      limit: '7',
     },
     {
       id: 2,
       direction: 'Vertical',
-      left: '12mm',
+      limit: '8',
+    },
+    {
+      id: 3,
+      direction: '45',
+      limit: '8',
     },
   ]
 

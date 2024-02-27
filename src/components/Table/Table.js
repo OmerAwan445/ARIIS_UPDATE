@@ -1,58 +1,29 @@
-// import React from "react";
-// import "./style.css";
-// export const Table = ({column, row}) => {
-//     console.log(row)
-//     console.log(column)
+import React from "react";
+import { Table } from "react-bootstrap";
 
-//   return (
-//     <>
-//         <h5>Sections</h5>
-//         {/* <table class='table table-dark table-striped'>
-//       <thead>
-//         <tr>
-//             {
-//                 column?.map ( record => (
-//                     <th scope='col' key={record?.id}>{record?.title}</th>
-//                 ))
-//             }
-//         </tr>
-//       </thead>
-//       <tbody>
-//         {
-//             row?.map ( record =>
-//               (
-//                 <tr key={record?.id}>
-//                     <td>{record.element}</td>
-//                     <td>{record?.chainage}</td>
-//                     <td>{record?.easting}</td>
-//                     <td>{record?.northing}</td>
-//                     <td>{record?.bearing}</td>
-//                     <td>{record?.note}</td>
-//                 </tr>
-//                 )
-//                 )
-
-//             }
-//       </tbody>
-//     </table> */}
-//     </>
-
-//   );
-// };
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-
-import './style.css'
-export const Table = ({column, row, name}) => {
+export const CustomTable = ({ columns, rows ,title}) => {
   return (
+    <>
     <div>
-    <h4 className='mt-4'>{name}</h4>
-      <DataGrid
-      className="table"
-        rows={row}
-        columns={column}
-        disableRowSelectionOnClick
-        />
-    </div>
+        <h3 className="fw-fw-lighter">{title}</h3>
+        <Table className='custom-table'>
+          <thead>
+          <tr>
+          {columns.map((column, index) => (
+            <th key={index}>{column}</th>
+          ))}
+        </tr>
+          </thead>
+          <tbody>
+            <tr>
+              {rows.map((cellData, cellIndex) => (
+                <td key={cellIndex}>{cellData}</td>
+              ))}
+            </tr>
+          </tbody>
+        </Table>
+      </div>
+    </>
+
   );
-}
+};
