@@ -286,11 +286,11 @@ export const inspection =[
         dateTime: RailProfile.dateTime,
         laserProfiles: [
             {
-                imageUrl: '/DummyData/Images/Left Rail Profile.png',
+                imageUrl: '/DummyData/Images/Left Rail Profile.jpg',
                 title: "Left Rail Profile"
               },
             {
-                imageUrl: '/DummyData/Images/Right Rail Profile.png',
+                imageUrl: '/DummyData/Images/Right Rail Profile.jpg',
                 title: "Right Rail Profile"
             }
         ],
