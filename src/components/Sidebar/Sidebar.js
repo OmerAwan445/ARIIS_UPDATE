@@ -16,7 +16,7 @@ export const Sidebar = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/">
+          <a className="nav-link" href="/aris-run">
             <PiPathBold className='sidebar-icon' />
             <span className="menu-title">Path</span>
           </a>
@@ -32,12 +32,6 @@ export const Sidebar = () => {
             <IoIosSettings className='sidebar-icon' />
             <span className="menu-title">Setting</span>
           </a>
-        </li>
-        <li className="nav-item">
-          <Link href="/aris-run"
-            className='nav-link rounded py-3 border-0'>
-            <span className='d-block'>Aris Run View</span>
-          </Link>
         </li>
         {/* <li className="nav-item">
               <a className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
