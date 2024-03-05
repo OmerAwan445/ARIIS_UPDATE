@@ -1,13 +1,18 @@
 import React from 'react'
 import { FaSearch } from "react-icons/fa";
 import { CiBellOn } from "react-icons/ci";
+import Image from 'next/image';
+import Link from 'next/link';
+import logo from "../../../public/images/logo.png";
+import Avatar from "../../../public/DummyData/Images/Avatar menu button.png";
+
 export const Header = () => {
   return (
-        <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-          <a className="navbar-brand brand-logo mr-5" href="/"><img src="images/logo.png" className="mr-2"
-              alt="logo" /></a>
-          <a className="navbar-brand brand-logo-mini" href="/"><img src="images/logo.png" alt="logo" /></a>
+        <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row flex-nowrap">
+        <div className="text-center ms-4">
+          <Link className=" mr-5" href="/">
+          <Image src={logo} className="mr-2" alt="logo" width={100} height={50} />
+          </Link>
         </div>
         <div className="navbar-menu-wrapper d-flex align-items-center justify-content-end">
           <ul className="navbar-nav mr-lg-2">
@@ -76,7 +81,7 @@ export const Header = () => {
             </li>
             <li className="nav-item nav-profile dropdown">
               <a className="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                <img src="images/logo.png" alt="profile" />
+                <Image src={Avatar} alt="profile" />
               </a>
               <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a className="dropdown-item">
