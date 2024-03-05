@@ -8,9 +8,10 @@ import TabContent from "../Tabs/TabContent";
 import InspectionModal from "./InspectionModal/InspectionModal";
 import VideoImageModal from "./VideoImageModal/VideoImageModal";
 import "./style.css";
+import Link from "next/link";
 
 
-function ModalMap({ show, handleClose, title, handleOpenArisRunModal, handleOpenArisRunIdModal }) {
+function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
 
   const [isShowOffcanvas, setIsShowOffcanvas] = useState({
     trackGuage: false,
@@ -96,11 +97,10 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, handleOpen
                         {(index + 1) % 4 === 0 && <hr className='my-3' style={{backgroundColor:"#C6C6C6"}} />}
                     </>
                   ))}
-                  <button
-                        onClick={handleOpenArisRunIdModal}
-                        className='inspection-list-color bg-transparent rounded py-3 border-0 text-start'>
+                  <Link href="/aris-run"
+                        className='inspection-list-color ms-2 text-decoration-none bg-transparent rounded py-3 border-0 text-start'>
                         <span className='d-block'>Aris Run View</span>
-                        </button>
+                        </Link>
                   <button
                         onClick={handleOpenArisRunModal}
                         className='inspection-list-color bg-transparent rounded py-3 border-0 text-start'>
