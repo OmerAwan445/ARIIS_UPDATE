@@ -11,6 +11,7 @@ const LaserProfile = ({ profiles }) => {
           <Col {...(profiles.length > 1 && { xs: "auto" })}  key={index}>
             <Figure>
               <FigureImage
+              style={{maxHeight:"320px"}}
               className="w-auto"
                 alt={profile.title}
                 src={profile.imageUrl}
