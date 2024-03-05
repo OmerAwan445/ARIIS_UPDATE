@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import ModalMap from "../components/Modal/ModalMap";
 import { greenpriority, highpriority, midpriority } from "./api";
 // import MapComponent from "@/components/Map/MapComponent";
-import { AriisRunSectionIds, AriisRunTableData } from "@/DummyData";
+import { AriisRunTableData } from "@/DummyData";
 import ArisRunModal from "@/components/Modal/ArisRunModal";
 import { fetchExcelRecord } from "@/utils/fetchxlsdata";
 import proj4 from "proj4";
@@ -155,29 +155,24 @@ export default function Home() {
       <div className="content-wrapper">
         <div className="row">
           <ModalMap
-            handleOpenArisRunIdModal={()=> setIsShowArisRunIdModal(true)}
             handleOpenArisRunModal={()=> setIsShowArisRunModal(true)}
             show={show}
             handleClose={handleClose}
             title="Section ID #G00002"
           />
           <ArisRunModal
-            show={isShowArisRunIdModal}
-            tableData={AriisRunTableData}
-            handleClose={()=> setIsShowArisRunIdModal(false)}
-            AriisRunSectionIds={AriisRunSectionIds}
-          />
-          <ArisRunModal
-            show={isShowArisRunModal}
-            tableData={AriisRunTableData}
-            handleClose={()=> setIsShowArisRunModal(false)}
+          show={isShowArisRunModal}
+          tableData={AriisRunTableData}
+          handleClose={()=> setIsShowArisRunModal(false)}
           />
 
-          <div className="col-sm-12 col-md-3 col-lg-3 col-xxl-1 scSidebar">
-            <div className="row ">
-              <div className="filterone col-12">
-                <button>High priority sections</button>
-                <ul className="priortySection">
+
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xxl-1 p-0">
+          <div class="d-flex align-items-center justify-content-between" style={{height:"calc(100vh - 60px)"}}>
+            <div class="d-flex h-100 flex-column w-100">
+              <div class="filterone h-100 w-100 overflow-y-scroll">
+              <button className="sticky-top">High priority sections</button>
+              <ul className="priortySection">
                     {highpriority.map((record, index) => (
                     <li onClick={() => handleShow()} key={index}>
                       {record?.text}
@@ -185,24 +180,26 @@ export default function Home() {
                   ))}
                 </ul>
               </div>
-              <div className="filtertwo col-12 w-100">
-                <button>Mid priority sections</button>
-                <ul className="priortySection">
+              <div class="filtertwo h-100 w-100 overflow-y-scroll">
+              <button className="sticky-top">Mid priority sections</button>
+              <ul className="priortySection">
                   {midpriority?.map((record) => (
-                    <li onClick={()=> setIsShowArisRunModaIdl(true)} key={record?.id}>{record?.text}</li>
+                    <li onClick={()=> setIsShowArisRunIdModal(true)} key={record?.id}>{record?.text}</li>
                   ))}
                 </ul>
               </div>
-              <div className="filterthree col-12 w-100">
-                <button>Green sections</button>
-                <ul className="priortySection">
+              <div class="filterthree h-100 w-100 overflow-y-scroll">
+              <button className="sticky-top">Green sections</button>
+              <ul className="priortySection">
                   {greenpriority?.map((record) => (
                     <li key={record?.id}>{record?.text}</li>
                   ))}
                 </ul>
               </div>
             </div>
+            </div>
           </div>
+
 
           <div className="col-sm-12 col-md-9 col-lg-9 col-xxl-11  p-0">
             <MapComponent state={state} />
