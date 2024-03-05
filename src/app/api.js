@@ -254,6 +254,44 @@ export const inspection =[
     },
     {
         id:3,
+        title:"Horizontal Alignment",
+        offCanvasName:"horizontal-alignment",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/horizontal-alignment.png',
+                title: ""
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:4,
+        title:"Vertical Alignment & Longitudinal Elevation",
+        offCanvasName:"vertical-alignment",
+        runNum: RailProfile.runNum,
+        sectionNum: RailProfile.sectionNum,
+        kmRangeStrt: RailProfile.kmRangeStrt,
+        kmRangeEnd: RailProfile.kmRangeEnd,
+        dateTime: RailProfile.dateTime,
+        laserProfiles: [
+            {
+                imageUrl: '/DummyData/Images/vertical-alignment.png',
+                title: ""
+            }
+        ],
+        MeasurementImage: MeasurementImage,
+        analysisTableData: AnalysisAgainstThresholds
+        ,isVideoImageModal: false,
+    },
+    {
+        id:5,
         title:"Free Wheel Clearance",
         offCanvasName:"freeWheel",
         runNum: RailProfile.runNum,
@@ -276,7 +314,7 @@ export const inspection =[
         ,isVideoImageModal: false,
     },
     {
-        id:4,
+        id:6,
         title:"Rail Profile Wear",
         offCanvasName:"railProfileWear",
         runNum: RailProfile.runNum,
@@ -299,7 +337,7 @@ export const inspection =[
         ,isVideoImageModal: false,
     },
     {
-        id:5,
+        id:7,
         title:"Third Rail Position",
         offCanvasName:"thirdRailPos",
         runNum: RailProfile.runNum,
@@ -318,7 +356,7 @@ export const inspection =[
         ,isVideoImageModal: false,
     },
     {
-        id:6,
+        id:8,
         title:"Third Rail Wear",
         offCanvasName:"railWear",
         runNum: RailProfile.runNum,
@@ -337,7 +375,7 @@ export const inspection =[
         ,isVideoImageModal: false,
     },
     {
-        id:7,
+        id:9,
         title:"Cross Level",
         offCanvasName:"crosslevel",
         runNum: RailProfile.runNum,
@@ -356,7 +394,7 @@ export const inspection =[
         ,isVideoImageModal: false,
     },
     {
-        id:8,
+        id:10,
         title:"Twist - Long & Short",
         offCanvasName:"twistLongShort",
         runNum: RailProfile.runNum,
@@ -375,7 +413,7 @@ export const inspection =[
         ,isVideoImageModal: false,
     },
     {
-        id:9,
+        id:11,
         title:"Super Elevation",
         offCanvasName:"superElevation",
         runNum: RailProfile.runNum,
@@ -394,7 +432,7 @@ export const inspection =[
         isVideoImageModal: false,
     },
     {
-        id:10,
+        id:12,
         title:"Panoramic Video of Tracks",
         offCanvasName:"panoramicVideo",
         runNum: RailProfile.runNum,
@@ -409,7 +447,7 @@ export const inspection =[
         //imageUrls: ['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']
     },
     {
-        id:11,
+        id:13,
         title:"Rail Image",
         offCanvasName:"railImage",
         runNum: RailProfile.runNum,
