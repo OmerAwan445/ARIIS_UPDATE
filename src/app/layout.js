@@ -14,19 +14,17 @@ export default function RootLayout({ children }) {
   return (
 
     <html>
-
       <body>
-
-            <div className='w-100'>
-              {/* <!-- partial:partials/_navbar.html --> */}
-              <Header />
-              {/* <!-- partial --> */}
-              <div className="container-fluid page-body-wrapper">
-                <Sidebar />
-                {children}
-              </div>
-              {/* <!-- page-body-wrapper ends --> */}
-            </div>
+        <div className='w-100'>
+          {/* <!-- partial:partials/_navbar.html --> */}
+          <Header />
+          {/* <!-- partial --> */}
+          <div className="container-fluid page-body-wrapper">
+            <Sidebar />
+            {children}
+          </div>
+          {/* <!-- page-body-wrapper ends --> */}
+        </div>
         {/* <!-- container-scroller --> */}
         {/* <!-- plugins:js --> */}
         <Script src="/js/jquery.js" strategy="afterInteractive" />

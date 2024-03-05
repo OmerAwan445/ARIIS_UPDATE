@@ -3,14 +3,14 @@
 import { ColArisDetail, columnDetail, inspection, rowArisDetail, rowDetail } from "@/app/api";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import { CustomTable, Table } from '../Table/CustomTable';
+import { CustomTable } from '../Table/CustomTable';
 import TabContent from "../Tabs/TabContent";
 import InspectionModal from "./InspectionModal/InspectionModal";
 import VideoImageModal from "./VideoImageModal/VideoImageModal";
 import "./style.css";
 
 
-function ModalMap({ show, handleClose, title }) {
+function ModalMap({ show, handleClose, title, handleOpenArisRunModal, handleOpenArisRunIdModal }) {
 
   const [isShowOffcanvas, setIsShowOffcanvas] = useState({
     trackGuage: false,
@@ -25,7 +25,8 @@ function ModalMap({ show, handleClose, title }) {
     panromicVideoTrack: false,
     railImage: false,
     panoramicVideo: false,
-    railImage: false
+    railImage: false,
+    arisRun:false
   });
 
   function toggleOffcanvas(offcanvasName, state) {
@@ -95,6 +96,16 @@ function ModalMap({ show, handleClose, title }) {
                         {(index + 1) % 4 === 0 && <hr className='my-3' style={{backgroundColor:"#C6C6C6"}} />}
                     </>
                   ))}
+                  <button
+                        onClick={handleOpenArisRunIdModal}
+                        className='inspection-list-color bg-transparent rounded py-3 border-0 text-start'>
+                        <span className='d-block'>Aris Run View</span>
+                        </button>
+                  <button
+                        onClick={handleOpenArisRunModal}
+                        className='inspection-list-color bg-transparent rounded py-3 border-0 text-start'>
+                        <span className='d-block'>Aris Run GPS Point</span>
+                        </button>
                 </div>
               </div>
 

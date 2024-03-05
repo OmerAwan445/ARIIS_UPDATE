@@ -1,12 +1,12 @@
 import React from "react";
 import { Col, Figure, FigureImage, Row } from "react-bootstrap";
 
-const LaserProfile = ({ profiles }) => {
+const ProfileImages = ({ profiles, isLaserProfile }) => {
   return (
-    <div>
+    <div className="">
       <h6 className="text-uppercase fw-bold mb-3">Raw Data</h6>
-      <h3 className="fw-lighter">Laser profile</h3>
-      <Row className="mt-4">
+      {isLaserProfile && <h3 className="fw-lighter">Laser profile</h3>}
+      <Row className="mt-5">
         {profiles.map((profile, index) => (
           <Col {...(profiles.length > 1 && { xs: "auto" })}  key={index}>
             <Figure>
@@ -25,4 +25,4 @@ const LaserProfile = ({ profiles }) => {
   );
 };
 
-export default LaserProfile;
+export default ProfileImages;
