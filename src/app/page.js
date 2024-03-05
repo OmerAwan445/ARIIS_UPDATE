@@ -16,6 +16,7 @@ const MapComponent  = dynamic(() => import('@/components/Map/MapComponent'), {
 
 export default function Home() {
   const [show, setShow] = useState(false);
+  const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
   const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -154,24 +155,26 @@ export default function Home() {
       <div className="content-wrapper">
         <div className="row">
           <ModalMap
+            handleOpenArisRunIdModal={()=> setIsShowArisRunIdModal(true)}
+            handleOpenArisRunModal={()=> setIsShowArisRunModal(true)}
             show={show}
             handleClose={handleClose}
             title="Section ID #G00002"
           />
           <ArisRunModal
-            show={isShowArisRunModal}
+            show={isShowArisRunIdModal}
             tableData={AriisRunTableData}
-            handleClose={()=> setIsShowArisRunModal(false)}
+            handleClose={()=> setIsShowArisRunIdModal(false)}
             AriisRunSectionIds={AriisRunSectionIds}
           />
-    {/* <ArisRunModal
+          <ArisRunModal
             show={isShowArisRunModal}
             tableData={AriisRunTableData}
             handleClose={()=> setIsShowArisRunModal(false)}
-          /> */}
+          />
 
           <div className="col-sm-12 col-md-3 col-lg-3 col-xxl-1 scSidebar">
-            <div className="row flex-column align-items-between secsidebar">
+            <div className="row ">
               <div className="filterone col-12">
                 <button>High priority sections</button>
                 <ul className="priortySection">
@@ -186,7 +189,7 @@ export default function Home() {
                 <button>Mid priority sections</button>
                 <ul className="priortySection">
                   {midpriority?.map((record) => (
-                    <li onClick={()=> setIsShowArisRunModal(true)} key={record?.id}>{record?.text}</li>
+                    <li onClick={()=> setIsShowArisRunModaIdl(true)} key={record?.id}>{record?.text}</li>
                   ))}
                 </ul>
               </div>

@@ -6,7 +6,7 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
     const isShowSectionIds = AriisRunSectionIds?.length > 0;
     return (
         <OffcanvasWrapper
-            offCanvasStyle={{ minWidth: isShowSectionIds ? `60vw` : '25vw' }}
+            offCanvasStyle={{ minWidth: isShowSectionIds ? `60vw` : '25vw', zIndex: "99999"}}
             isShow={show}
             handleClose={handleClose}
             bodyClassname={isShowSectionIds ? 'custom-offcanvas-body' : 'overflow-hidden'}

@@ -219,7 +219,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: true,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/laserProfile-img.png',
                 title: "Left Rail Profile & Right Rail Profile"
@@ -238,7 +239,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: true,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/laserProfile-img2.png',
                 title: "Left Rail Profile"
@@ -261,7 +263,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: false,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/horizontal-alignment.png',
                 title: ""
@@ -280,7 +283,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: false,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/vertical-alignment.png',
                 title: ""
@@ -299,7 +303,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: true,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/laserProfile-img3.png',
                 title: "Left Rail Profile"
@@ -322,7 +327,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: true,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/Left Rail Profile.jpeg',
                 title: "Left Rail Profile"
@@ -345,7 +351,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: true,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/Third-rail.png',
                 title: "Left Rail Profile"
@@ -364,7 +371,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: true,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/Third-rail.png',
                 title: "Left Rail Profile"
@@ -383,7 +391,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: false,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/cross-level.png',
                 title: ""
@@ -402,7 +411,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: false,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/twist-long-short.png',
                 title: ""
@@ -421,7 +431,8 @@ export const inspection =[
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
-        laserProfiles: [
+        isLaserProfile: false,
+        profilesImages: [
             {
                 imageUrl: '/DummyData/Images/cross-level.png',
                 title: ""
@@ -459,5 +470,5 @@ export const inspection =[
         MeasurementImage: MeasurementImage,
         analysisTableData: AnalysisAgainstThresholds,
         imageUrls: ['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']
-    }
+    },
 ]

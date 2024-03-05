@@ -1,5 +1,5 @@
 import AnalysisTable from '@/components/InspectionModal/AnalysisTable'
-import LaserProfile from '@/components/InspectionModal/LaserProfile'
+import ProfileImages from '@/components/InspectionModal/ProfileImages'
 import Image from 'next/image'
 import { Container, Row } from 'react-bootstrap'
 import InpectionCardLayout from '../../InspectionModal/InpectionCardLayout'
@@ -8,7 +8,7 @@ import { BackBtn } from './BackBtn'
 import ModalHeader from '../ModalHeader'
 import OffcanvasWrapper from '../OffcanvasWrapper'
 
-const InspectionModal = ({ title, runNum, sectionNum, kmRangeStrt, kmRangeEnd, dateTime, MeasurementImage, isShow, handleClose, laserProfiles, analysisTableData }) => {
+const InspectionModal = ({ title, runNum, sectionNum, kmRangeStrt, kmRangeEnd, dateTime, MeasurementImage, isShow, handleClose, isLaserProfile, profilesImages, analysisTableData }) => {
     return (
         <OffcanvasWrapper offCanvasStyle={{ minWidth: '90vw', zIndex:"99999" }} isShow={isShow} handleClose={handleClose}
         CloseButtonComponent={BackBtn}
@@ -25,7 +25,7 @@ const InspectionModal = ({ title, runNum, sectionNum, kmRangeStrt, kmRangeEnd, d
                 <Container fluid>
                     <Row className='mt-4 gap-3'>
                         <InpectionCardLayout colSpace={7}>
-                            <LaserProfile profiles={laserProfiles} />
+                            <ProfileImages isLaserProfile={isLaserProfile} profiles={profilesImages} />
                         </InpectionCardLayout>
                         <InpectionCardLayout ><AnalysisTable tableData={analysisTableData} /></InpectionCardLayout>
                     </Row>

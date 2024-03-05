@@ -28667,6 +28667,7 @@ div.tagsinput span.tag a {
 
 /* Navbar */
 .navbar {
+  height: 60px;
   font-weight: 400;
   transition: background 0.25s ease;
   -webkit-transition: background 0.25s ease;
@@ -28677,7 +28678,7 @@ div.tagsinput span.tag a {
   /* box-shadow: 0px 5px 21px -5px #CDD1E1;
    */
    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)!important;
-  /* Navbar color variations */
+   /* Navbar color variations */
 }
 
 .sidebar-dark .navbar {
@@ -28691,7 +28692,7 @@ div.tagsinput span.tag a {
   -moz-transition: width 0.25s ease, background 0.25s ease;
   -ms-transition: width 0.25s ease, background 0.25s ease;
   width: 235px;
-  height: 60px;
+  /* height: 60px; */
 }
 
 .sidebar-dark .navbar .navbar-brand-wrapper {
@@ -28741,7 +28742,7 @@ div.tagsinput span.tag a {
   padding-right: 2.375rem;
   padding-left: 2.375rem;
   width: calc(100% - 235px);
-  height: 60px;
+  /* height: 60px; */
 }
 
 @media (max-width: 991px) {
