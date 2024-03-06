@@ -5,6 +5,7 @@ import { GoGraph } from "react-icons/go";
 import { IoIosSettings } from "react-icons/io";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Link from 'next/link';
+
 export const Sidebar = () => {
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
@@ -16,10 +17,10 @@ export const Sidebar = () => {
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/aris-run">
+          <Link className="nav-link" href="/aris-run">
             <PiPathBold className='sidebar-icon' />
             <span className="menu-title">Path</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="/">

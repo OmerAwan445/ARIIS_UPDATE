@@ -1,16 +1,16 @@
-import React from 'react'
-import { FaSearch } from "react-icons/fa";
-import { CiBellOn } from "react-icons/ci";
 import Image from 'next/image';
 import Link from 'next/link';
-import logo from "../../../public/images/logo.png";
+import { CiBellOn } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
+import { RxHamburgerMenu } from 'react-icons/rx';
 import Avatar from "../../../public/DummyData/Images/Avatar menu button.png";
+import logo from "../../../public/images/logo.png";
 
-export const Header = () => {
+export const Header = ({ toggleSideBar }) => {
   return (
         <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row flex-nowrap">
         <div className="text-center ms-4">
-          <Link className=" mr-5" href="/">
+          <Link className="mr-5" href="/">
           <Image src={logo} className="mr-2" alt="logo" width={100} height={50} />
           </Link>
         </div>
@@ -101,8 +101,9 @@ export const Header = () => {
             </li>
           </ul>
           <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-            data-toggle="offcanvas">
-            <span className="icon-menu"></span>
+          onClick={toggleSideBar}
+          >
+            <RxHamburgerMenu className='navbar-toggler-icon'/>
           </button>
         </div>
       </nav>

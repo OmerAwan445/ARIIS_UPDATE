@@ -96,7 +96,7 @@ $(function() {
           navItemClicked.removeClass('show-submenu');
         }
         $(this).toggleClass('show-submenu');
-      }        
+      }
     })
 
     $(window).scroll(function() {
@@ -115,5 +115,5 @@ $(function() {
   $('#navbar-search-icon').click(function() {
     $("#navbar-search-input").focus();
   });
-  
+
 });
