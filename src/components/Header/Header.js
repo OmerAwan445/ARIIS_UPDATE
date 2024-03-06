@@ -5,8 +5,14 @@ import { FaSearch } from "react-icons/fa";
 import { RxHamburgerMenu } from 'react-icons/rx';
 import Avatar from "../../../public/DummyData/Images/Avatar menu button.png";
 import logo from "../../../public/images/logo.png";
+import SidebarMobile from '../Sidebar/SidebarMobile';
+export const Header = () => {
 
-export const Header = ({ toggleSideBar }) => {
+    const handleShow = () => {
+      console.log('Handle show from SidebarMobile');
+      // You can add any logic you want to execute when the SidebarMobile is shown
+    };
+
   return (
         <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row flex-nowrap">
         <div className="text-center ms-4">
@@ -100,12 +106,10 @@ export const Header = ({ toggleSideBar }) => {
               </a>
             </li>
           </ul>
-          <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-          onClick={toggleSideBar}
-          >
-            <RxHamburgerMenu className='navbar-toggler-icon'/>
-          </button>
+        
+            {/* <RxHamburgerMenu className='navbar-toggler-icon'/> */}
+        <SidebarMobile handleShow={handleShow} />
         </div>
-      </nav>
+    </nav>
   )
 }
