@@ -28650,7 +28650,7 @@ div.tagsinput span.tag a {
 /* style for off-canvas menu*/
 @media screen and (max-width: 991px) {
   .sidebar-offcanvas {
-    position: fixed;
+    position: fixed !important;
     max-height: calc(100vh - 60px);
     top: 60px;
     bottom: 0;

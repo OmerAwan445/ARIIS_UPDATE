@@ -28636,23 +28636,6 @@ div.tagsinput span.tag a {
   background: transparent;
 }
 
-/* style for off-canvas menu*/
-@media screen and (max-width: 991px) {
-  .sidebar-offcanvas {
-    position: fixed;
-    max-height: calc(100vh - 60px);
-    top: 60px;
-    bottom: 0;
-    overflow: auto;
-    right: -235px;
-    -webkit-transition: all 0.25s ease-out;
-    -o-transition: all 0.25s ease-out;
-    transition: all 0.25s ease-out;
-  }
-  .sidebar-offcanvas.active {
-    right: 0;
-  }
-}
 
 /* Navbar */
 .navbar {
