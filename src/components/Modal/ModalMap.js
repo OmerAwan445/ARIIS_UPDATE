@@ -57,9 +57,11 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
       <Modal
         show={show}
         onHide={handleClose}
+        fullscreen={'xl-down'}
         backdrop='static'
         keyboard={false}
-        className='customModalMap'>
+        className='customModalMap'
+        >
         <Modal.Body>
           <div className='row'>
             <p onClick={handleClose} className="col-12 d-flex justify-content-start mb-3"><span className="close">X</span></p>
@@ -72,14 +74,14 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
             <div className='tableSection col-12 mt-4 mb-5'>
               <CustomTable columns={columnDetail} rows={rowDetail} title={'Section details'} />
             </div>
-            <div className='tableSection col-8'>
+            <div className='tableSection col-md-8 col-12'>
               <CustomTable columns={ColArisDetail} rows={rowArisDetail} title={'ARIIS runs'} />
               <div>
                 <h4 className="mt-5 fs-4">TCI</h4>
                 <TabContent />
               </div>
             </div>
-            <div className="col-4">
+            <div className="col-md-4 col-12">
               <h4 className="mt-4 mb-4">Inspections</h4>
               <div className="secondary-bg">
                 <div className="d-flex flex-column px-2 ">
