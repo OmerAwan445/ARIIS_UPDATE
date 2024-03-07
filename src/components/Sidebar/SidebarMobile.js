@@ -26,47 +26,50 @@ const SidebarMobile = ({ handleShow }) => {
         onClick={handleOffcanvasShow}  >
             <RxHamburgerMenu className='navbar-toggler-icon'/>
           </button>
-      
+
       <Offcanvas show={show} style={{
   background: "#374151",
   fontFamily: "Nunito",
   fontWeight: "500",
   padding: '0',
-  
+
       }} onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title></Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body  className='sidebar' style={{boxShadow:'none'}}>
+        <Offcanvas.Body className='sidebar' style={{boxShadow:'none'}}>
         <nav className="" id="sidebar">
-      <ul className="nav d-flex flex-column justify-content-between">
+      <ul className="nav d-flex flex-column justify-content-between" style={{fontSize:"20px !important"}} >
         <li className="nav-item" >
           <a className="nav-link" href="/">
-            <FaRegMap className='sidebar-icon' style={{fontSize:'30px',paddingRight:"5px"}}/>
-            <span className="menu-title" style={{fontSize:'25px'}}>Map</span>
+            <FaRegMap className='sidebar-icon fs-3' />
+            <span className="menu-title p-3 fs-4"  >Map</span>
           </a>
         </li>
         <li className="nav-item" >
           <Link className="nav-link" href="/aris-run">
-            <PiPathBold className='sidebar-icon' style={{fontSize:'28px'}} />
-            <span className="menu-title"style={{fontSize:'25px'}}>Path</span>
+            <PiPathBold className='sidebar-icon fs-3'/>
+            <span className="menu-title p-3 fs-4"  >Path</span>
           </Link>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="/">
-            <GoGraph className='sidebar-icon' style={{fontSize:'30px'}}/>
-            <span className="menu-title" style={{fontSize:'25px'}}>Graph</span>
+            <GoGraph className='sidebar-icon fs-3' />
+            <span className="menu-title p-3 fs-4"  >Graph</span>
           </a>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="/" >
-            <IoIosSettings className='sidebar-icon'style={{fontSize:'30px'}} />
-            <span className="menu-title" style={{fontSize:'25px'}}>Setting</span>
+            <IoIosSettings className='sidebar-icon fs-3' />
+            <span className="menu-title p-3 fs-4"  >Setting</span>
           </a>
+        </li>
+        <li className="nav-item">
+          <span className="nav-link"></span>
         </li>
         {/* <li>
           <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span className='nav-link'><RxHamburgerMenu className='sidebar-icon' /></span>
+            <span className='nav-link'><RxHamburgerMenu className='sidebar-icon fs-3' /></span>
           </button>
         </li> */}
       </ul>
