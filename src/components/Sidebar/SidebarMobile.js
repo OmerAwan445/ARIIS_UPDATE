@@ -34,8 +34,8 @@ const SidebarMobile = ({ handleShow }) => {
   padding: '0',
 
       }} onHide={handleClose}>
-        <Offcanvas.Header closeButton>
-          <Offcanvas.Title></Offcanvas.Title>
+        <Offcanvas.Header >
+           <p onClick={handleClose} className="col-12 d-flex justify-content-end mb-3"><span className="close" style={{color:'white'}}>X</span></p>
         </Offcanvas.Header>
         <Offcanvas.Body className='sidebar' style={{boxShadow:'none'}}>
         <nav className="" id="sidebar">

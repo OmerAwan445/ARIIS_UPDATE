@@ -6,7 +6,7 @@ export const CustomTable = ({ columns, rows ,title}) => {
     <>
     <div>
         <h3 className="fw-fw-lighter">{title}</h3>
-        <Table className='custom-table'>
+        <Table className='custom-table' responsive="sm">
           <thead>
           <tr>
           {columns?.map((column, index) => (
@@ -25,7 +25,7 @@ export const CustomTable = ({ columns, rows ,title}) => {
           </tbody>
         </Table>
       </div>
-    </>
-
+    </> 
+  
   );
 };

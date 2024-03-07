@@ -39,6 +39,12 @@
     margin-left: 1rem
     ;
 }
+
+@media (max-width: 1155px) {
+  .customModalMap .modal-dialog {
+    max-width: 100%;
+  }
+}
 @keyframes slideInRight {
   0% {
     transform: translateX(100%);
