@@ -212,7 +212,7 @@ export const rowArisDetail = [
 export const inspection =[
     {
         id: 1,
-        title: "Track Guage",
+        title: "Track gauge",
         offCanvasName: "trackGuage",
         runNum: RailProfile.runNum,
         sectionNum: RailProfile.sectionNum,
