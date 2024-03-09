@@ -1,14 +1,13 @@
 "use client";
+import { AriisRunTableData } from "@/DummyData";
 import "@/app/css/index.css";
+import ArisRunModal from "@/components/Modal/ArisRunModal";
+import { fetchExcelRecord } from "@/utils/fetchxlsdata";
 import dynamic from "next/dynamic";
+import proj4 from "proj4";
 import { useEffect, useState } from "react";
 import ModalMap from "../components/Modal/ModalMap";
 import { greenpriority, highpriority, midpriority } from "./api";
-// import MapComponent from "@/components/Map/MapComponent";
-import { AriisRunTableData } from "@/DummyData";
-import ArisRunModal from "@/components/Modal/ArisRunModal";
-import { fetchExcelRecord } from "@/utils/fetchxlsdata";
-import proj4 from "proj4";
 
 const MapComponent  = dynamic(() => import('@/components/Map/MapComponent'), {
   ssr: false
@@ -167,7 +166,7 @@ export default function Home() {
           />
 
 
-          <div className="col-sm-12 col-md-3 col-lg-3 col-xxl-1 p-0">
+          <div className="d-none d-lg-block  col-lg-3 col-xxl-1 p-0">
           <div class="d-flex align-items-center justify-content-between" style={{height:"calc(100vh - 60px)"}}>
             <div class="d-flex h-100 flex-column w-100">
               <div class="filterone h-100 w-100 overflow-y-scroll">
@@ -201,7 +200,7 @@ export default function Home() {
           </div>
 
 
-          <div className="col-sm-12 col-md-9 col-lg-9 col-xxl-11  p-0">
+          <div className="col-12 col-lg-9 col-xxl-11  p-0">
             <MapComponent state={state} />
           </div>
         </div>

@@ -29,7 +29,7 @@ const SidebarMobile = ({ handleShow }) => {
 
       <Offcanvas show={show} style={{
   background: "#374151",
-  fontFamily: "Nunito",
+  fontFamily: "Nunito, sans-serif",
   fontWeight: "500",
   padding: '0',
 
