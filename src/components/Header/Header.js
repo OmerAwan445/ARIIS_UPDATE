@@ -2,16 +2,20 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { CiBellOn } from "react-icons/ci";
 import { FaSearch } from "react-icons/fa";
-import { RxHamburgerMenu } from 'react-icons/rx';
 import Avatar from "../../../public/DummyData/Images/Avatar menu button.png";
 import logo from "../../../public/images/logo.png";
 import SidebarMobile from '../Sidebar/SidebarMobile';
+import LocationSidebarMbl from '../LocationSidebarMbl/LocationSidebarMbl';
 export const Header = () => {
 
     const handleShow = () => {
       console.log('Handle show from SidebarMobile');
       // You can add any logic you want to execute when the SidebarMobile is shown
     };
+    const handleLocationSidebarShow = () => {
+      // You can add any logic you want to execute when the SidebarMobile is shown
+    };
+
 
   return (
         <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row flex-nowrap">
@@ -35,6 +39,9 @@ export const Header = () => {
             </li>
           </ul>
           <ul className="navbar-nav navbar-nav-right">
+            <li className='nav-item'>
+            <LocationSidebarMbl handleShow={handleLocationSidebarShow}/>
+            </li>
             <li className="nav-item dropdown">
               <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
                 data-toggle="dropdown">
@@ -105,10 +112,12 @@ export const Header = () => {
                 <i className="icon-ellipsis"></i>
               </a>
             </li>
+            <li className='nav-item ml-0'>
+        <SidebarMobile handleShow={handleShow} />
+            </li>
           </ul>
         
             {/* <RxHamburgerMenu className='navbar-toggler-icon'/> */}
-        <SidebarMobile handleShow={handleShow} />
         </div>
     </nav>
   )

@@ -61,8 +61,9 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
         backdrop='static'
         keyboard={false}
         className='customModalMap'
+       
         >
-        <Modal.Body>
+        <Modal.Body  style={{marginTop:'0px !important'}}>
           <div className='row'>
             <p onClick={handleClose} className="col-12 d-flex justify-content-start mb-3"><span className="close">X</span></p>
             <div className='header d-flex align-items-baseline col-12'>
