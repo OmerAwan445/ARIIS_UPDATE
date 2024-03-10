@@ -492,7 +492,7 @@ export const inspection =[
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,
         isVideoImageModal: true,
-        videoUrl: "https://www.youtube.com/watch?v=ZK-rNEhJIDs",
+        videoUrl: "/DummyData/Videos/panoramic-video.mp4",
         MeasurementImage: MeasurementImage,
         analysisTableData: AnalysisAgainstThresholds
         //imageUrls: ['/DummyData/Images/rail-img1.png','/DummyData/Images/rail-img2.png']
