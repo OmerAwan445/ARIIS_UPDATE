@@ -24,7 +24,7 @@ export default function VideoImageModal({title, runNum, sectionNum, kmRangeStrt,
         <Stack direction='vertical' gap={4} className='mt-4'>
             <div style={{backgroundColor:"#111827"}} className='text-white px-3 py-4' >
             {!isVideoModal && <FigureImages imageUrls={imageUrls} />}
-            {isVideoModal && <video src={videoUrl} className="w-100" height={500} autoPlay controls></video>}
+            {isVideoModal && <video src={videoUrl} className='w-100' height={800} autoPlay controls></video>}
             </div>
             <div style={{backgroundColor:"#111827"}} className='text-white px-3 py-4'>
                 <Image src={MeasurementImage} width={0} height={0} className='w-auto' alt='Measurement' />

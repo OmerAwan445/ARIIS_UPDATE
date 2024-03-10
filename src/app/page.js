@@ -118,8 +118,6 @@ export default function Home() {
           [ 25.24164942,55.31640887,],
         ];
 
-        console.log("Valid Long Lat Objects New", validLatLngObjects);
-
         // Create data in the desired format
         const polylineData = validLatLngObjects.map((latLng, index) => ({
           from_lat: state.lat,
