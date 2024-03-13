@@ -8,8 +8,7 @@ import proj4 from "proj4";
 import { useEffect, useState } from "react";
 import ModalMap from "../components/Modal/ModalMap";
 import { greenpriority, highpriority, midpriority } from "./api";
-
-const MapComponent  = dynamic(() => import('@/components/Map/MapComponent'), {
+const MapComponent = dynamic(() => import('@/components/Map/MapComponent'), {
   ssr: false
 })
 
@@ -35,8 +34,20 @@ export default function Home() {
   const utmProjection = "+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs";
   const wgs84Projection = "+proj=longlat +datum=WGS84 +no_defs";
 
+
+
+
   useEffect(() => {
+
+    // fetch data using the api
+    const fetchMainRailGaugeData = async () => {
+      const res = await fetch('/api/mainrailgauge');
+      const data = await res.json()
+      console.log(data);
+    }
+
     // Fetch Excel data when the component mounts
+
     const fetchExcelData = async () => {
       try {
         const excelData = await fetchExcelRecord();
@@ -106,16 +117,16 @@ export default function Home() {
 
         console.log("Valid Long Lat Objects", validLatLngObjects);
         validLatLngObjects = [
-          [ 25.24362927,55.31594862,],
-          [ 25.2418743, 55.31635697,],
-          [ 25.2418743, 55.31635697,],
-          [ 25.24184218,55.31636444,],
-          [ 25.24181007,55.3163719, ],
-          [ 25.24177795,55.31637935,],
-          [ 25.24174582,55.31638678,],
-          [ 25.2417137, 55.31639418,],
-          [ 25.24168156,55.31640155,],
-          [ 25.24164942,55.31640887,],
+          [25.24362927, 55.31594862,],
+          [25.2418743, 55.31635697,],
+          [25.2418743, 55.31635697,],
+          [25.24184218, 55.31636444,],
+          [25.24181007, 55.3163719,],
+          [25.24177795, 55.31637935,],
+          [25.24174582, 55.31638678,],
+          [25.2417137, 55.31639418,],
+          [25.24168156, 55.31640155,],
+          [25.24164942, 55.31640887,],
         ];
 
         // Create data in the desired format
@@ -146,54 +157,56 @@ export default function Home() {
     };
 
     fetchExcelData();
+    fetchMainRailGaugeData();
+
   }, []);
   return (
     <div className="main-panel">
       <div className="content-wrapper">
         <div className="row">
           <ModalMap
-            handleOpenArisRunModal={()=> setIsShowArisRunModal(true)}
+            handleOpenArisRunModal={() => setIsShowArisRunModal(true)}
             show={show}
             handleClose={handleClose}
             title="Section ID #G00002"
           />
           <ArisRunModal
-          show={isShowArisRunModal}
-          tableData={AriisRunTableData}
-          handleClose={()=> setIsShowArisRunModal(false)}
+            show={isShowArisRunModal}
+            tableData={AriisRunTableData}
+            handleClose={() => setIsShowArisRunModal(false)}
           />
 
 
           <div className="d-none d-lg-block  col-lg-3 col-xxl-1 p-0">
-          <div class="d-flex align-items-center justify-content-between" style={{height:"calc(100vh - 60px)"}}>
-            <div class="d-flex h-100 flex-column w-100">
-              <div class="filterone h-100 w-100 overflow-y-scroll">
-              <button className="sticky-top">High priority sections</button>
-              <ul className="priortySection">
+            <div class="d-flex align-items-center justify-content-between" style={{ height: "calc(100vh - 60px)" }}>
+              <div class="d-flex h-100 flex-column w-100">
+                <div class="filterone h-100 w-100 overflow-y-scroll">
+                  <button className="sticky-top">High priority sections</button>
+                  <ul className="priortySection">
                     {highpriority.map((record, index) => (
-                    <li onClick={() => handleShow()} key={index}>
-                      {record?.text}
-                    </li>
-                  ))}
-                </ul>
+                      <li onClick={() => handleShow()} key={index}>
+                        {record?.text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="filtertwo h-100 w-100 overflow-y-scroll">
+                  <button className="sticky-top">Mid priority sections</button>
+                  <ul className="priortySection">
+                    {midpriority?.map((record) => (
+                      <li onClick={() => setIsShowArisRunIdModal(true)} key={record?.id}>{record?.text}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div class="filterthree h-100 w-100 overflow-y-scroll">
+                  <button className="sticky-top">Green sections</button>
+                  <ul className="priortySection">
+                    {greenpriority?.map((record) => (
+                      <li key={record?.id}>{record?.text}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div class="filtertwo h-100 w-100 overflow-y-scroll">
-              <button className="sticky-top">Mid priority sections</button>
-              <ul className="priortySection">
-                  {midpriority?.map((record) => (
-                    <li onClick={()=> setIsShowArisRunIdModal(true)} key={record?.id}>{record?.text}</li>
-                  ))}
-                </ul>
-              </div>
-              <div class="filterthree h-100 w-100 overflow-y-scroll">
-              <button className="sticky-top">Green sections</button>
-              <ul className="priortySection">
-                  {greenpriority?.map((record) => (
-                    <li key={record?.id}>{record?.text}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
             </div>
           </div>
 
