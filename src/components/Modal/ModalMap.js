@@ -29,7 +29,7 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
     arisRun:false
   });
 
-  const rowDetail = items.map((record) => ["Straight", record["Chainage"], "4829.2829", "36583.2839", "257'23", "TBA"])
+  const rowDetail = items.map((record) => ["Straight", record["chainage"], "4829.2829", "36583.2839", "257'23", "TBA"])
   function toggleOffcanvas(offcanvasName, state) {
     setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
   }
