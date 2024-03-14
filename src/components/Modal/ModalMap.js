@@ -33,8 +33,6 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
     setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
   }
 
-
-  console.log(inspection, "inspection")
   return (
     <>
       {inspection.map((record) =>
@@ -61,7 +59,7 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
         backdrop='static'
         keyboard={false}
         className='customModalMap'
-       
+
         >
         <Modal.Body  style={{marginTop:'0px !important'}}>
           <div className='row'>
