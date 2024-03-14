@@ -1,6 +1,6 @@
 // components/ModalMap.js
 "use client";
-import { ColArisDetail, columnDetail, inspection, rowArisDetail, rowDetail } from "@/app/api";
+import { ColArisDetail, columnDetail, inspection, rowArisDetail } from "@/app/api";
 import { useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { CustomTable } from '../Table/CustomTable';
@@ -10,7 +10,7 @@ import VideoImageModal from "./VideoImageModal/VideoImageModal";
 import "./style.css";
 
 
-function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
+function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
 
   const [isShowOffcanvas, setIsShowOffcanvas] = useState({
     trackGuage: false,
@@ -29,6 +29,7 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
     arisRun:false
   });
 
+  const rowDetail = items.map((record) => ["Straight", record["Chainage"], "4829.2829", "36583.2839", "257'23", "TBA"])
   function toggleOffcanvas(offcanvasName, state) {
     setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
   }
@@ -59,7 +60,6 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal }) {
         backdrop='static'
         keyboard={false}
         className='customModalMap'
-
         >
         <Modal.Body  style={{marginTop:'0px !important'}}>
           <div className='row'>
