@@ -2,7 +2,7 @@
 import { AriisRunTableData } from "@/DummyData";
 import "@/app/css/index.css";
 import ArisRunModal from "@/components/Modal/ArisRunModal";
-import { fetchExcelRecord } from "@/utils/fetchxlsdata";
+import { fetchExcelRecords } from "@/utils/fetchxlsdata";
 import dynamic from "next/dynamic";
 import proj4 from "proj4";
 import { useEffect, useState } from "react";
@@ -21,6 +21,8 @@ export default function Home() {
   const [state, setState] = useState({
     lat: 25.24362927,
     lng: 55.31594862,
+    // lat: 30.24362927,
+    // lng: 5.31594862,
     zoom: 9,
     excelData: {
       easting: [],
@@ -38,123 +40,46 @@ export default function Home() {
 
 
   useEffect(() => {
+    // Fetch Excel data for all sheets
+const fetchExcelData = async () => {
+  try {
+      // Fetch records from all Excel sheets
+      const excelDataArray = await fetchExcelRecords();
 
-    // fetch data using the api
-    const fetchMainRailGaugeData = async () => {
-      const res = await fetch('/api/mainrailgauge');
-      const data = await res.json()
-      console.log(data);
-    }
+      // Extract polyline data from each set of records
+      const allPolylineData = excelDataArray.flatMap((excelData, sheetIndex) => {
+          // Assuming relevant fields' indices in the Excel data
+          const startEastingIndex = 4;
+          const startNorthingIndex = 5;
+          const endEastingIndex = 9;
+          const endNorthingIndex = 10;
 
-    // Fetch Excel data when the component mounts
+          // Extract data from Excel rows and calculate latitude and longitude for start and end points
+          return excelData.slice(1).map((row, rowIndex) => {
+              const startLatLng = proj4(utmProjection, wgs84Projection, [row[startEastingIndex], row[startNorthingIndex]]);
+              const endLatLng = proj4(utmProjection, wgs84Projection, [row[endEastingIndex], row[endNorthingIndex]]);
 
-    const fetchExcelData = async () => {
-      try {
-        const excelData = await fetchExcelRecord();
+              return {
+                  from_lat: startLatLng[1],
+                  from_long: startLatLng[0],
+                  to_lat: endLatLng[1],
+                  to_long: endLatLng[0],
+                  id: `Sheet${sheetIndex + 1}_Row${rowIndex + 1}`,
+                  color: "red"
+              };
+          });
+      });
 
-        console.log("excelData", excelData);
-
-        // Assuming POINT is in the first column, EASTING is in the sixth column, and NORTHING is in the seventh column
-        const pointIndex = 0;
-        const eastingIndex = 6;
-        const northingIndex = 5;
-
-        // Extract data from Excel rows
-        var demoData = excelData.slice(1).map((row) => ({
-          POINT: row[pointIndex] || 0,
-          EASTING: row[eastingIndex],
-          NORTHING: row[northingIndex],
-        }));
-
-        console.log("Demo Data Unfiltered", demoData);
-
-        demoData = demoData.filter(
-          (item) =>
-            item.EASTING !== undefined &&
-            item.NORTHING !== undefined &&
-            typeof item.EASTING === "number" &&
-            typeof item.NORTHING === "number"
-        );
-
-        console.log("Demo Data Filtered", demoData);
-
-        // // Example data for demo
-        // const demoData = [
-        //   { POINT: 'A', EASTING: 495826.79117, NORTHING: 2794807.8545 },
-        //   { POINT: 'B', EASTING: 495904.83451, NORTHING: 2794811.76926 },
-        //   { POINT: 'C', EASTING: 495945.98545, NORTHING: 2794815.61071 },
-        //   // Add more data as needed
-        // ];
-        // console.log(demoData);
-
-        // Separate Easting, Northing, and POINT values
-        const eastingValues = demoData.map((entry) => entry.EASTING);
-        const northingValues = demoData.map((entry) => entry.NORTHING);
-        const pointValues = demoData.map((entry) => entry.POINT);
-        // Ensure that the number of Easting, Northing, and POINT values match
-        if (
-          eastingValues.length !== northingValues.length ||
-          eastingValues.length !== pointValues.length
-        ) {
-          console.error(
-            "Mismatch in the number of Easting, Northing, and POINT values"
-          );
-          return;
-        }
-
-        // Create LatLng objects only for valid coordinates
-        var validLatLngObjects = eastingValues.map((eastingValue, index) =>
-          proj4(utmProjection, wgs84Projection, [
-            eastingValue,
-            northingValues[index],
-          ])
-        );
-
-        // Log latitude and longitude to the console
-        validLatLngObjects.forEach((latLng) => {
-          // console.log(`Latitude: ${latLng[1]}, Longitude: ${latLng[0]}`);
-        });
-
-        console.log("Valid Long Lat Objects", validLatLngObjects);
-        validLatLngObjects = [
-          [25.24362927, 55.31594862,],
-          [25.2418743, 55.31635697,],
-          [25.2418743, 55.31635697,],
-          [25.24184218, 55.31636444,],
-          [25.24181007, 55.3163719,],
-          [25.24177795, 55.31637935,],
-          [25.24174582, 55.31638678,],
-          [25.2417137, 55.31639418,],
-          [25.24168156, 55.31640155,],
-          [25.24164942, 55.31640887,],
-        ];
-
-        // Create data in the desired format
-        const polylineData = validLatLngObjects.map((latLng, index) => ({
-          from_lat: state.lat,
-          from_long: state.lng,
-          id: `ID_${index}`,
-          to_lat: latLng[0],
-          to_long: latLng[1],
-          color: "red", // Add color property
-        }));
-
-        console.log("polylineData", polylineData)
-
-        setState((prevState) => ({
+      // Update state with all polyline data
+      setState((prevState) => ({
           ...prevState,
-          excelData: {
-            easting: eastingValues,
-            northing: northingValues,
-            points: pointValues,
-          },
-          polylineData: polylineData,
-          validLatLngObjects,
-        }));
-      } catch (error) {
-        console.error("Error fetching or parsing Excel data:", error);
-      }
-    };
+          polylineData: allPolylineData,
+      }));
+  } catch (error) {
+      console.error("Error fetching or parsing Excel data:", error);
+  }
+};
+
 
     fetchExcelData();
     fetchMainRailGaugeData();
