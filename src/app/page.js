@@ -82,7 +82,7 @@ const fetchExcelData = async () => {
 
 
     fetchExcelData();
-    fetchMainRailGaugeData();
+    // fetchMainRailGaugeData();
 
   }, []);
   return (
@@ -101,8 +101,7 @@ const fetchExcelData = async () => {
             handleClose={() => setIsShowArisRunModal(false)}
           />
 
-
-          <div className="d-none d-lg-block  col-lg-3 col-xxl-1 p-0">
+          <div className="d-none d-lg-block p-0" style={{ width:"230px" }}>
             <div class="d-flex align-items-center justify-content-between" style={{ height: "calc(100vh - 60px)" }}>
               <div class="d-flex h-100 flex-column w-100">
                 <div class="filterone h-100 w-100 overflow-y-scroll">
@@ -135,8 +134,7 @@ const fetchExcelData = async () => {
             </div>
           </div>
 
-
-          <div className="col-12 col-lg-9 col-xxl-11  p-0">
+          <div className="p-0" style={{ flex:"1 !important", maxWidth:"100%" }}>
             <MapComponent state={state} />
           </div>
         </div>
