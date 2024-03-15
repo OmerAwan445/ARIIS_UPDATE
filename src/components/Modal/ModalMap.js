@@ -71,10 +71,10 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
               </span>
             </div>
             <div className='tableSection col-12 mt-4 mb-5'>
-              <CustomTable columns={columnDetail} rows={rowDetail} title={'Section details'} />
+              <CustomTable isExportData={true} columns={columnDetail} rows={rowDetail} title={'Section details'} />
             </div>
             <div className='tableSection col-md-8 col-12'>
-              <CustomTable columns={ColArisDetail} rows={rowArisDetail} title={'ARIIS runs'} />
+              <CustomTable isExportData={false} columns={ColArisDetail} rows={rowArisDetail} title={'ARIIS runs'} />
               <div>
                 <h4 className="mt-5 fs-4">TCI</h4>
                 <TabContent />
