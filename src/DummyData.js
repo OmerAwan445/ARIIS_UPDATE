@@ -11,20 +11,20 @@ export const AnalysisAgainstThresholds = [
     {
       id: 1,
       direction: 'Horizontal',
-      left: '42.518',
-      right: '41.175',
+      horizontal: '42.518',
+      vertical: '41.175',
     },
     {
       id: 2,
       direction: 'Vertical',
-      left: '71.953',
-      right: '71.730',
+      horizontal: '71.953',
+      vertical: '71.730',
     },
     {
       id: 3,
       direction: '45',
-      left: '44.607',
-      right: '45.628',
+      horizontal: '44.607',
+      vertical: '45.628',
     },
   ];
 
