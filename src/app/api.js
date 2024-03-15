@@ -364,6 +364,7 @@ export const inspection =[
         offCanvasName:"railProfileWear",
         runNum: RailProfile.runNum,
         sectionNum: RailProfile.sectionNum,
+        apiRoute: "/api/collections/thirdrailposition/records",
         kmRangeStrt: RailProfile.kmRangeStrt,
         kmRangeEnd: RailProfile.kmRangeEnd,
         dateTime: RailProfile.dateTime,

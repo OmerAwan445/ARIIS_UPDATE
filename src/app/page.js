@@ -168,7 +168,6 @@ export default function Home() {
           color: "red",
         }));
 
-        console.log("polylineData", polylineData)
         const demoData = [
           { POINT: 'A', EASTING: 495826.79117, NORTHING: 2794807.8545 },
           { POINT: 'B', EASTING: 495904.83451, NORTHING: 2794811.76926 },
