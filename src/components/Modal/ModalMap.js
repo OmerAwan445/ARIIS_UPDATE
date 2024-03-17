@@ -1,17 +1,24 @@
 // components/ModalMap.js
 "use client";
 import { ColArisDetail, columnDetail, inspection, rowArisDetail } from "@/app/api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
 import { CustomTable } from '../Table/CustomTable';
 import TabContent from "../Tabs/TabContent";
 import InspectionModal from "./InspectionModal/InspectionModal";
 import VideoImageModal from "./VideoImageModal/VideoImageModal";
 import "./style.css";
+import { fetchArisRunTableData } from "@/app/services/fetchArisRunTableData";
 
 
-function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
+function ModalMap({ show, handleClose, handleOpenArisRunModal, activeSection }) {
+  if (!activeSection) return null;
+  const [arisRunTableData, setArisRunTableData] = useState({
+    columnArisDetail: ["Date", "Run"],
+    rowArisDetail: []
+  });
 
+  const title = activeSection?.section_id;
   const [isShowOffcanvas, setIsShowOffcanvas] = useState({
     trackGuage: false,
     flangeway: false,
@@ -26,13 +33,33 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
     railImage: false,
     panoramicVideo: false,
     railImage: false,
-    arisRun:false
+    arisRun: false
   });
 
-  const rowDetail = items.map((record) => ["Straight", record["chainage"], "4829.2829", "36583.2839", "257'23", "TBA"])
+  const rowDetail = [["Straight", activeSection["chainage"], "4829.2829", "36583.2839", "257'23", "TBA"]]
+
   function toggleOffcanvas(offcanvasName, state) {
     setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
   }
+
+  useEffect(() => {
+    (async () => {
+      const record = await fetchArisRunTableData();
+      if (record.length > 0) {
+        const rows = record.map((item) => {
+          const originalDate = new Date("2024-03-15T03:21:54.459Z");
+
+          const day = originalDate.getUTCDate();
+          const month = originalDate.getUTCMonth() + 1;
+          const year = originalDate.getUTCFullYear();
+
+          const formattedDate = `${day}/${month < 10 ? '0' + month : month}/${year}`;
+          return [formattedDate, item.run_id];
+        });
+        setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
+      }
+    })();
+  }, [])
 
   return (
     <>
@@ -44,7 +71,7 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
             isShow={isShowOffcanvas[record.offCanvasName]}
             handleClose={() => toggleOffcanvas(record.offCanvasName, false)}
           />
-          ) : (
+        ) : (
           <InspectionModal
             key={record.id}
             {...record}
@@ -60,8 +87,8 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
         backdrop='static'
         keyboard={false}
         className='customModalMap'
-        >
-        <Modal.Body  style={{marginTop:'0px !important'}}>
+      >
+        <Modal.Body style={{ marginTop: '0px !important' }}>
           <div className='row'>
             <p onClick={handleClose} className="col-12 d-flex justify-content-start mb-3"><span className="close">X</span></p>
             <div className='header d-flex align-items-baseline col-12'>
@@ -74,7 +101,7 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
               <CustomTable isExportData={true} columns={columnDetail} rows={rowDetail} title={'Section details'} />
             </div>
             <div className='tableSection col-md-8 col-12'>
-              <CustomTable isExportData={false} columns={ColArisDetail} rows={rowArisDetail} title={'ARIIS runs'} />
+              <CustomTable isExportData={false} columns={arisRunTableData.columnArisDetail} rows={arisRunTableData.rowArisDetail} title={'ARIIS runs'} />
               <div>
                 <h4 className="mt-5 fs-4">TCI</h4>
                 <TabContent />
@@ -93,16 +120,16 @@ function ModalMap({ show, handleClose, title, handleOpenArisRunModal, items }) {
                         style={record.title === 'Rail Profile Wear' ? { backgroundColor: "#a2191f" } : { backgroundColor: "transparent" }}
                       >
                         <span className='d-block'>{record?.title}</span>
-                        </button>
-                        {(index + 1) % 4 === 0 && <hr className='my-3' style={{backgroundColor:"#C6C6C6"}} />}
+                      </button>
+                      {(index + 1) % 4 === 0 && <hr className='my-3' style={{ backgroundColor: "#C6C6C6" }} />}
                     </>
                   ))}
 
                   <button
-                        onClick={handleOpenArisRunModal}
-                        className='inspection-list-color bg-transparent rounded py-3 border-0 text-start'>
-                        <span className='d-block'>Aris Run GPS Point</span>
-                        </button>
+                    onClick={handleOpenArisRunModal}
+                    className='inspection-list-color bg-transparent rounded py-3 border-0 text-start'>
+                    <span className='d-block'>Aris Run GPS Point</span>
+                  </button>
                 </div>
               </div>
 
