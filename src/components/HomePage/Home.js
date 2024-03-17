@@ -6,14 +6,17 @@ import ArisRunModal from "@/components/Modal/ArisRunModal";
 import ModalMap from "@/components/Modal/ModalMap";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+
 const MapComponent = dynamic(() => import('@/components/Map/MapComponent'), {
   ssr: false
-})
+});
+
 
 export default function Home({ mapCoordinatesSections }) {
   const [show, setShow] = useState(false);
   const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
   const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
+  const [activeSection, setActiveSection] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [state, setState] = useState({
@@ -28,16 +31,24 @@ export default function Home({ mapCoordinatesSections }) {
     polylineData: [],
     validLatLngObjects: [],
   });
-  // console.log(state.polylineData)
   /* const utmProjection = "+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs";
   const wgs84Projection = "+proj=longlat +datum=WGS84 +no_defs"; */
+
   const highpriorityItems = new Set();
   mapCoordinatesSections.forEach(item => {
     const existingItem = Array.from(highpriorityItems).find(obj => obj.section_id === item.section_id);
-      if (!existingItem) {
-        highpriorityItems.add(item);
-      }
+    if (!existingItem) {
+      highpriorityItems.add(item);
+    }
   });
+
+  const handleItemClick = (e) => {
+    const sectionOrder = Number(e.target.dataset.sectionOrder ?? -1);
+    if (sectionOrder !== null) {
+      setActiveSection([...highpriorityItems][sectionOrder]);
+      handleShow();
+    }
+  };
 
 
   useEffect(() => {
@@ -154,51 +165,39 @@ export default function Home({ mapCoordinatesSections }) {
 
     // fetchExcelData();
 
-/*         setHighPriorityItems((prevSet) => {
-          const newSet = new Set(prevSet);
-          items.forEach(item => {
-            const existingItem = Array.from(newSet).find(obj => obj.section_id === item.section_id);
-              if (!existingItem) {
-                newSet.add(item);
-              }
-            });
-          return newSet;
-        }); */
 
-        const polylineData = mapCoordinatesSections.map((record, index) => ({
-          from_lat: state.lat,
-          from_long: state.lng,
-          id: record.id,
-          to_lat: record.latitude,
-          to_long: record.longitude,
-          color: "red",
-        }));
+    const polylineData = mapCoordinatesSections.map((record, index) => ({
+      from_lat: state.lat,
+      from_long: state.lng,
+      id: record.id,
+      to_lat: record.latitude,
+      to_long: record.longitude,
+      color: "red",
+    }));
 
+    const demoData = [
+      { POINT: 'A', EASTING: 495826.79117, NORTHING: 2794807.8545 },
+      { POINT: 'B', EASTING: 495904.83451, NORTHING: 2794811.76926 },
+      { POINT: 'C', EASTING: 495945.98545, NORTHING: 2794815.61071 },
+      // Add more data as needed
+    ];
 
-
-
-        const demoData = [
-          { POINT: 'A', EASTING: 495826.79117, NORTHING: 2794807.8545 },
-          { POINT: 'B', EASTING: 495904.83451, NORTHING: 2794811.76926 },
-          { POINT: 'C', EASTING: 495945.98545, NORTHING: 2794815.61071 },
-          // Add more data as needed
-        ];
-
-        // Separate Easting, Northing, and POINT values
-        const eastingValues = demoData.map((entry) => entry.EASTING);
-        const northingValues = demoData.map((entry) => entry.NORTHING);
-        const pointValues = demoData.map((entry) => entry.POINT);
-        setState((prevState) => ({
-          ...prevState,
-          excelData: {
-            easting: eastingValues,
-            northing: northingValues,
-            points: pointValues,
-          },
-          polylineData: polylineData,
-        }));
+    // Separate Easting, Northing, and POINT values
+    const eastingValues = demoData.map((entry) => entry.EASTING);
+    const northingValues = demoData.map((entry) => entry.NORTHING);
+    const pointValues = demoData.map((entry) => entry.POINT);
+    setState((prevState) => ({
+      ...prevState,
+      excelData: {
+        easting: eastingValues,
+        northing: northingValues,
+        points: pointValues,
+      },
+      polylineData: polylineData,
+    }));
 
   }, []);
+
   return (
     <div className="main-panel">
       <div className="content-wrapper">
@@ -207,9 +206,9 @@ export default function Home({ mapCoordinatesSections }) {
             handleOpenArisRunModal={() => setIsShowArisRunModal(true)}
             show={show}
             handleClose={handleClose}
-            items={[...highpriorityItems]}
-            title="Section ID #G00002"
-          />
+            activeSection={activeSection}
+            />
+
           <ArisRunModal
             show={isShowArisRunModal}
             tableData={AriisRunTableData}
@@ -222,9 +221,9 @@ export default function Home({ mapCoordinatesSections }) {
               <div class="d-flex h-100 flex-column w-100">
                 <div class="filterone h-100 w-100 overflow-y-scroll">
                   <button className="sticky-top">High priority sections</button>
-                  <ul className="priortySection">
+                  <ul className="priortySection" onClick={(e) => handleItemClick(e)}>
                     {[...highpriorityItems].map((record, index) => (
-                      <li onClick={() => handleShow()} key={index}>
+                      <li data-section-order= {index} key={index}>
                         {record?.section_id}
                       </li>
                     ))}
