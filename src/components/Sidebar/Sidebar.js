@@ -11,10 +11,10 @@ export const Sidebar = () => {
     <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
         <li className="nav-item">
-          <a className="nav-link" href="/">
+          <Link className="nav-link" href="/">
             <FaRegMap className='sidebar-icon' />
             <span className="menu-title">Map</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <Link className="nav-link" href="/aris-run">
@@ -23,28 +23,28 @@ export const Sidebar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/">
+          <Link className="nav-link" href="/">
             <GoGraph className='sidebar-icon' />
             <span className="menu-title">Graph</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="/">
+          <Link className="nav-link" href="/">
             <IoIosSettings className='sidebar-icon' />
             <span className="menu-title">Setting</span>
-          </a>
+          </Link>
         </li>
         {/* <li className="nav-item">
-              <a className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <Link className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                 <i className="icon-layout menu-icon"></i>
                 <span className="menu-title">UI Elements</span>
                 <i className="menu-arrow"></i>
-              </a>
+              </Link>
               <div className="collapse" id="ui-basic">
                 <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"> <a className="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
-                  <li className="nav-item"> <a className="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
-                  <li className="nav-item"> <a className="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+                  <li className="nav-item"> <Link className="nav-link" href="pages/ui-features/buttons.html">Buttons</Link></li>
+                  <li className="nav-item"> <Link className="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</Link></li>
+                  <li className="nav-item"> <Link className="nav-link" href="pages/ui-features/typography.html">Typography</Link></li>
                 </ul>
               </div>
             </li> */}

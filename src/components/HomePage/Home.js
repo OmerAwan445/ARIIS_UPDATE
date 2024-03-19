@@ -31,16 +31,25 @@ export default function Home({ mapCoordinatesSections }) {
     polylineData: [],
     validLatLngObjects: [],
   });
+  const highpriorityItems = new Set();
+
   /* const utmProjection = "+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs";
   const wgs84Projection = "+proj=longlat +datum=WGS84 +no_defs"; */
 
-  const highpriorityItems = new Set();
   mapCoordinatesSections.forEach(item => {
     const existingItem = Array.from(highpriorityItems).find(obj => obj.section_id === item.section_id);
     if (!existingItem) {
       highpriorityItems.add(item);
     }
   });
+
+  function handleClickOnMapSectionLines(line_section_id) {
+    const foundSectionIndex = Array.from(highpriorityItems).findIndex(item => item.section_id === line_section_id);
+    if(foundSectionIndex !== -1) {
+      setActiveSection([...highpriorityItems][foundSectionIndex]);
+      handleShow();
+    }
+  }
 
   const handleItemClick = (e) => {
     const sectionOrder = Number(e.target.dataset.sectionOrder ?? -1);
@@ -167,6 +176,7 @@ export default function Home({ mapCoordinatesSections }) {
 
 
     const polylineData = mapCoordinatesSections.map((record, index) => ({
+      section_id: record.section_id,
       from_lat: state.lat,
       from_long: state.lng,
       id: record.id,
@@ -251,7 +261,7 @@ export default function Home({ mapCoordinatesSections }) {
 
 
           <div className="p-0" style={{ flex: "1", maxWidth: "100%" }}>
-            <MapComponent state={state} />
+            <MapComponent handleClickOnMapSectionLines={handleClickOnMapSectionLines} state={state} />
           </div>
         </div>
       </div>
