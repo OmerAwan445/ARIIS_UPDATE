@@ -12,20 +12,14 @@ import { BackBtn } from './BackBtn'
 
 const InspectionModal = ({ title, runNum, sectionNum, kmRangeStrt, kmRangeEnd, dateTime, MeasurementImage, isShow, handleClose, isLaserProfile, profilesImages, analysisTableData, apiRoute }) => {
     const [analysisAgainstThresholds, setAnalysisAgainstThresholds] = useState([]);
-    const [reqError, setReqError] = useState(false);
     useEffect(() => {
-        console.log(reqError);
-        if (!reqError && isShow && analysisAgainstThresholds.length === 0 && apiRoute) {
+        if (isShow && analysisAgainstThresholds.length === 0 && apiRoute) {
             // fetch rows data here and put them in cache so component don't send fetch request on every render
             (async () => {
                 const data = await fetchAnalysisAgainstThresholds(apiRoute);
                 const filteredData = data?.map(({ id, horizontal, vertical }) => ({ id, horizontal, vertical })) ?? [];
-                console.log(filteredData, 'filteredData');
                 if (filteredData.length > 0) {
                     setAnalysisAgainstThresholds(filteredData);
-                }
-                else {
-                    setReqError(true);
                 }
             })();
         }
