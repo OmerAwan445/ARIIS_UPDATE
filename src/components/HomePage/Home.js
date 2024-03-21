@@ -37,6 +37,9 @@ export default function Home({ mapCoordinatesSections }) {
   const wgs84Projection = "+proj=longlat +datum=WGS84 +no_defs"; */
 
   mapCoordinatesSections.forEach(item => {
+
+    const sectionId = (item.section_id).replace(/^SECTION__/, '');
+    item.section_id = sectionId;
     const existingItem = Array.from(highpriorityItems).find(obj => obj.section_id === item.section_id);
     if (!existingItem) {
       highpriorityItems.add(item);
