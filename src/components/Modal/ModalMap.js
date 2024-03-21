@@ -84,7 +84,6 @@ function ModalMap({ show, handleClose, handleOpenArisRunModal, activeSection }) 
         show={show}
         onHide={handleClose}
         fullscreen={'xl-down'}
-        backdrop='static'
         keyboard={false}
         className='customModalMap'
       >
