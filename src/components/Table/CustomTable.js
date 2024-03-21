@@ -8,11 +8,14 @@ export const CustomTable = ({ columns, rows, title, isExportData }) => {
       <div>
         <div className="d-flex justify-content-between align-items-center">
           <h3 className="fw-fw-lighter">{title}</h3>
-          {isExportData &&
-            <ExportDataToExcel fileName={"section-details"} exportData={[columns, ...rows]} />
-        }
+          {isExportData && (
+            <ExportDataToExcel
+              fileName={"section-details"}
+              exportData={[columns, ...rows]}
+            />
+          )}
         </div>
-        <Table className='custom-table' responsive="sm">
+        <Table className="custom-table" responsive="xxl">
           <thead>
             <tr>
               {columns?.map((column, index) => (
@@ -32,6 +35,5 @@ export const CustomTable = ({ columns, rows, title, isExportData }) => {
         </Table>
       </div>
     </>
-
   );
 };
