@@ -169,9 +169,9 @@ export const greenpriority = [
     }
 ]
 
- export const columnDetail = ["Element","Chainage","Easting","Northing","Bearing","Note"]
- export const rowDetail = [["Straight","88+238.283","4829.2829","36583.2839","257'23","TBA"]];
-//Table columns and rows
+//  export const columnDetail = ["Element","Chainage","Easting","Northing","Bearing","Note"]
+//  export const rowDetail = [["Straight","88+238.283","4829.2829","36583.2839","257'23","TBA"]];
+// //Table columns and rows
 /* export const columnDetail = [
     { field: 'id', headerName: 'ID', width: 90 },
     {

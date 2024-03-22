@@ -88,6 +88,10 @@ function ModalMap({
           <InspectionModal
             key={record.id}
             {...record}
+
+            //TODO: this is a simple workaround to show the id in the third section
+            activeSectionID={activeSection.section_id}
+            
             isShow={isShowOffcanvas[record.offCanvasName]}
             handleClose={() => toggleOffcanvas(record.offCanvasName, false)}
           />

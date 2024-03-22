@@ -9,7 +9,7 @@ const SectionDataTable = ({ activeSectionId }) => {
       const data = await fetchSectionsData();
 
       setSectionsData(data);
-      console.log(data);
+    //   console.log(data);
     };
     fetchData();
   }, []);
