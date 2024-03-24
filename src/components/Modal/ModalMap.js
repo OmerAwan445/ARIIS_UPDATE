@@ -65,7 +65,7 @@ function ModalMap({
           const formattedDate = `${day}/${
             month < 10 ? "0" + month : month
           }/${year}`;
-          console.log(item.run_id);
+          // console.log(item.run_id);
           return [formattedDate, item.run_id];
         });
         setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
@@ -90,7 +90,7 @@ function ModalMap({
             key={record.id}
             {...record}
             //TODO: this is a simple workaround to show the id in the third section
-            activeSectionID={activeSection.section_id}
+            activeSectionID={activeSection?.section_id}
             runNum={arisRunTableData.rowArisDetail[0]?.[1]}
 
             isShow={isShowOffcanvas[record.offCanvasName]}

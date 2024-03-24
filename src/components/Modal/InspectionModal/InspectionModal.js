@@ -29,23 +29,52 @@ const InspectionModal = ({
   const [analysisAgainstThresholds, setAnalysisAgainstThresholds] = useState(
     []
   );
+
   useEffect(() => {
-    if (isShow && analysisAgainstThresholds.length === 0 && apiRoute) {
-      // fetch rows data here and put them in cache so component don't send fetch request on every render
-      (async () => {
-        const data = await fetchAnalysisAgainstThresholds(apiRoute);
-        const filteredData =
-          data?.map(({ chainage, horizontal, vertical }) => ({
-            chainage,
-            horizontal,
-            vertical,
-          })) ?? [];
-        if (filteredData.length > 0) {
-          setAnalysisAgainstThresholds(filteredData);
+    const fetchData = async () => {
+      if (isShow && apiRoute) {
+        try {
+          const data = await fetchAnalysisAgainstThresholds(apiRoute);
+          // console.log(data);
+
+          const filter = data.filter((item) => {
+            const sectionId = item.section_id.replace(/^SECTION__/, "");
+            return sectionId === activeSectionID;
+          });
+          // console.log(filter);
+
+          const filteredData =
+            filter?.map((item,index) => {
+              let filteredItem = {};
+              if (item.gauge) {
+                // Extract fields for collection1
+                filteredItem = {
+                  index:index+1,
+                  chainage: item.chainage,
+                  gauge: item.gauge,
+                };
+              } else if (item.horizontal && item.vertical) {
+                // Extract fields for collection2
+                filteredItem = {
+                  chainage: item.chainage,
+                  horizontal: item.horizontal,
+                  vertical: item.vertical,
+                };
+              }
+              return filteredItem;
+            }) ?? [];
+
+          if (filteredData.length > 0) {
+            setAnalysisAgainstThresholds(filteredData);
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-      })();
-    }
-  });
+      }
+    };
+
+    fetchData();
+  }, [isShow, apiRoute, activeSectionID]);
 
   return (
     <OffcanvasWrapper

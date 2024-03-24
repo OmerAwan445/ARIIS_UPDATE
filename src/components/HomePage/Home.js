@@ -230,9 +230,9 @@ export default function Home({ mapCoordinatesSections }) {
 
 
           <div className="d-none d-lg-block p-0" style={{ width: "240px" }}>
-            <div class="d-flex align-items-center justify-content-between" style={{ height: "calc(100vh - 60px)" }}>
-              <div class="d-flex h-100 flex-column w-100">
-                <div class="filterone h-100 w-100 overflow-y-scroll">
+            <div className="d-flex align-items-center justify-content-between" style={{ height: "calc(100vh - 60px)" }}>
+              <div className="d-flex h-100 flex-column w-100">
+                <div className="filterone h-100 w-100 overflow-y-scroll">
                   <button className="sticky-top">High priority sections</button>
                   <ul className="priortySection" onClick={(e) => handleItemClick(e)}>
                     {[...highpriorityItems].map((record, index) => (
@@ -242,7 +242,7 @@ export default function Home({ mapCoordinatesSections }) {
                     ))}
                   </ul>
                 </div>
-                <div class="filtertwo h-100 w-100 overflow-y-scroll">
+                <div className="filtertwo h-100 w-100 overflow-y-scroll">
                   <button className="sticky-top">Mid priority sections</button>
                   <ul className="priortySection">
                     {midpriority?.map((record) => (
@@ -250,7 +250,7 @@ export default function Home({ mapCoordinatesSections }) {
                     ))}
                   </ul>
                 </div>
-                <div class="filterthree h-100 w-100 overflow-y-scroll">
+                <div className="filterthree h-100 w-100 overflow-y-scroll">
                   <button className="sticky-top">Green sections</button>
                   <ul className="priortySection">
                     {greenpriority?.map((record) => (
