@@ -46,7 +46,7 @@ function ModalMap({
     arisRun: false,
   });
 
-  const rowDetail = [["Straight", activeSection["chainage"], "4829.2829", "36583.2839", "257'23", "TBA"]]
+  // const rowDetail = [["Straight", activeSection["chainage"], "4829.2829", "36583.2839", "257'23", "TBA"]]
 
   function toggleOffcanvas(offcanvasName, state) {
     setIsShowOffcanvas({ ...isShowOffcanvas, [offcanvasName]: state });
@@ -57,8 +57,7 @@ function ModalMap({
       const record = await fetchArisRunTableData();
       if (record.length > 0) {
         const rows = record.map((item) => {
-          const originalDate = new Date("2024-03-15T03:21:54.459Z");
-
+          const originalDate = new Date(item.start_datetime);
           const day = originalDate.getUTCDate();
           const month = originalDate.getUTCMonth() + 1;
           const year = originalDate.getUTCFullYear();
@@ -66,6 +65,7 @@ function ModalMap({
           const formattedDate = `${day}/${
             month < 10 ? "0" + month : month
           }/${year}`;
+          console.log(item.run_id);
           return [formattedDate, item.run_id];
         });
         setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
@@ -73,7 +73,8 @@ function ModalMap({
     };
     fetchData();
   }, []);
-
+  
+  // console.log(arisRunTableData);
   return (
     <>
       {inspection.map((record) =>
@@ -88,10 +89,10 @@ function ModalMap({
           <InspectionModal
             key={record.id}
             {...record}
-
             //TODO: this is a simple workaround to show the id in the third section
             activeSectionID={activeSection.section_id}
-            
+            runNum={arisRunTableData.rowArisDetail[0]?.[1]}
+
             isShow={isShowOffcanvas[record.offCanvasName]}
             handleClose={() => toggleOffcanvas(record.offCanvasName, false)}
           />
@@ -120,7 +121,10 @@ function ModalMap({
             {/* <div className='tableSection col-12 mt-4 mb-5'>
               <CustomTable isExportData={true} columns={columnDetail} rows={rowDetail} title={'Section details'} />
             </div> */}
-            <div className="tableSection col-md-8 col-12">
+            <div
+              className="tableSection col-md-8 col-12"
+              // style={{ backgroundColor: "red" }}
+            >
               <CustomTable
                 // isExportData={true}
                 columns={arisRunTableData.columnArisDetail}

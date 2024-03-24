@@ -53,7 +53,7 @@ const MapComponent = ({ state, handleClickOnMapSectionLines }) => {
             color={color}
             weight={1}
           >
-            <Popup>{`This is a ${color} line`}</Popup>
+            {/* <Popup>{`This is a ${color} line`}</Popup> */}
           </Polyline>
         ))}
       </MapContainer>
