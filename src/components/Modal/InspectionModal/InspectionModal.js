@@ -13,7 +13,7 @@ import { BackBtn } from "./BackBtn";
 const InspectionModal = ({
   title,
   runNum,
-  sectionNum,
+  // sectionNum,
   kmRangeStrt,
   kmRangeEnd,
   dateTime,
@@ -92,7 +92,7 @@ const InspectionModal = ({
               />
             </InpectionCardLayout>
             <InpectionCardLayout>
-              <ParametersAndCondtions sectionId={sectionNum} />
+              <ParametersAndCondtions sectionId={activeSectionID} />
             </InpectionCardLayout>
           </Row>
         </Container>
