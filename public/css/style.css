@@ -13338,12 +13338,17 @@ input[type="button"].btn-block {
 }
 
 .navbar-toggler {
-  padding: 0.25rem 0.75rem;
-  font-size: 1.25rem;
+  padding: 0.25rem 0.50rem;
+  font-size: 1rem;
   line-height: 1;
   background-color: transparent;
   border: 1px solid transparent;
   border-radius: 0.25rem;
+  position: fixed;
+  top: 70px;
+  /* right: 0; */
+  left: 60px;
+  z-index: 999;
 }
 
 .navbar-toggler:hover, .navbar-toggler:focus {
@@ -28342,7 +28347,7 @@ div.tagsinput span.tag a {
 
 @media (max-width: 767px) {
   .content-wrapper {
-    padding: 1.5rem 1.5rem;
+    /* padding: 1.5rem 1.5rem; */
   }
 }
 
