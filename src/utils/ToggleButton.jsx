@@ -1,12 +1,12 @@
 import React from "react";
 import { FaArrowCircleDown } from "react-icons/fa";
 
-const ToggleButton = () => {
+const ToggleButton = ({handleClick}) => {
   return (
     <button
-      className="toggle-button"
+      className="toggle-button d-lg-none"
       type="button"
-      //   onClick={handleOffcanvasShow}
+        onClick={handleClick}
     >
       <FaArrowCircleDown className="navbar-toggler-icon" />
     </button>
