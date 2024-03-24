@@ -53,25 +53,35 @@ function ModalMap({
   }
 
   useEffect(() => {
-    const fetchData = async () => {
-      const record = await fetchArisRunTableData();
-      if (record.length > 0) {
-        const rows = record.map((item) => {
-          const originalDate = new Date(item.start_datetime);
-          const day = originalDate.getUTCDate();
-          const month = originalDate.getUTCMonth() + 1;
-          const year = originalDate.getUTCFullYear();
+   const fetchData = async () => {
+     const record = await fetchArisRunTableData();
+     if (record.length > 0) {
+       const rows = record.map((item) => {
+         // Parse the original date
+         const originalDate = new Date(item.start_datetime);
 
-          const formattedDate = `${day}/${
-            month < 10 ? "0" + month : month
-          }/${year}`;
-          // console.log(item.run_id);
-          return [formattedDate, item.run_id];
-        });
-        setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
-      }
-    };
-    fetchData();
+         // Format the date according to the desired format
+         const formattedDate = new Intl.DateTimeFormat("en-US", {
+           day: "numeric",
+           month: "short",
+           year: "numeric",
+         }).format(originalDate);
+
+         // Get the meridiem (am/pm)
+         const meridiem = originalDate.getHours() >= 12 ? "pm" : "am";
+
+         // Construct the final formatted date/time string
+         const formattedDateTime = `${formattedDate} at ${
+           originalDate.getHours() % 12 || 12
+         }.${originalDate.getMinutes()}${meridiem}`;
+
+         return [formattedDateTime, item.run_id];
+       });
+       setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
+     }
+   };
+   fetchData();
+
   }, []);
   
   // console.log(arisRunTableData);
@@ -92,6 +102,7 @@ function ModalMap({
             //TODO: this is a simple workaround to show the id in the third section
             activeSectionID={activeSection?.section_id}
             runNum={arisRunTableData.rowArisDetail[0]?.[1]}
+            dateTime={arisRunTableData.rowArisDetail[0]?.[0]}
 
             isShow={isShowOffcanvas[record.offCanvasName]}
             handleClose={() => toggleOffcanvas(record.offCanvasName, false)}

@@ -258,7 +258,7 @@ export const inspection = [
     // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     apiRoute: "main_rail_gauge",
     isLaserProfile: true,
     profilesImages: [
@@ -279,7 +279,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: true,
     profilesImages: [
       {
@@ -303,7 +303,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: false,
     profilesImages: [
       {
@@ -323,7 +323,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: false,
     profilesImages: [
       {
@@ -343,7 +343,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: true,
     profilesImages: [
       {
@@ -367,7 +367,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: true,
     profilesImages: [
       {
@@ -392,7 +392,7 @@ export const inspection = [
     kmRangeStrt: RailProfile.kmRangeStrt,
     apiRoute: "third_rail_position",
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: true,
     profilesImages: [
       {
@@ -412,7 +412,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: true,
     profilesImages: [
       {
@@ -432,7 +432,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: false,
     profilesImages: [
       {
@@ -452,7 +452,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: false,
     profilesImages: [
       {
@@ -472,7 +472,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isLaserProfile: false,
     profilesImages: [
       {
@@ -492,7 +492,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isVideoImageModal: true,
     videoUrl: "/DummyData/Videos/panoramic-video.mp4",
     MeasurementImage: MeasurementImage,
@@ -507,7 +507,7 @@ export const inspection = [
     // // sectionNum: RailProfile.sectionNum,
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
-    dateTime: RailProfile.dateTime,
+    // dateTime: RailProfile.dateTime,
     isVideoImageModal: true,
     MeasurementImage: MeasurementImage,
     analysisTableData: AnalysisAgainstThresholds,
