@@ -1,20 +1,20 @@
 "use client";
 import { AriisRunTableData } from "@/DummyData";
-import { greenpriority, midpriority } from "@/app/api";
 import "@/app/css/index.css";
 import ArisRunModal from "@/components/Modal/ArisRunModal";
 import ModalMap from "@/components/Modal/ModalMap";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
+import PrioritySectionSidebar from "../PrioritySections/PrioritySectionSidebar";
+import PrioritySectionSidebarCanvas from "../PrioritySections/PrioritySectionSidebarCanvas";
 
-const MapComponent = dynamic(() => import('@/components/Map/MapComponent'), {
-  ssr: false
+const MapComponent = dynamic(() => import("@/components/Map/MapComponent"), {
+  ssr: false,
 });
-
 
 export default function Home({ mapCoordinatesSections }) {
   const [show, setShow] = useState(false);
-  const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
+  // const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
   const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
   const handleClose = () => setShow(false);
@@ -36,19 +36,22 @@ export default function Home({ mapCoordinatesSections }) {
   /* const utmProjection = "+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs";
   const wgs84Projection = "+proj=longlat +datum=WGS84 +no_defs"; */
 
-  mapCoordinatesSections.forEach(item => {
-
-    const sectionId = (item.section_id).replace(/^SECTION__/, '');
+  mapCoordinatesSections.forEach((item) => {
+    const sectionId = item.section_id.replace(/^SECTION__/, "");
     item.section_id = sectionId;
-    const existingItem = Array.from(highpriorityItems).find(obj => obj.section_id === item.section_id);
+    const existingItem = Array.from(highpriorityItems).find(
+      (obj) => obj.section_id === item.section_id
+    );
     if (!existingItem) {
       highpriorityItems.add(item);
     }
   });
 
   function handleClickOnMapSectionLines(line_section_id) {
-    const foundSectionIndex = Array.from(highpriorityItems).findIndex(item => item.section_id === line_section_id);
-    if(foundSectionIndex !== -1) {
+    const foundSectionIndex = Array.from(highpriorityItems).findIndex(
+      (item) => item.section_id === line_section_id
+    );
+    if (foundSectionIndex !== -1) {
       setActiveSection([...highpriorityItems][foundSectionIndex]);
       handleShow();
     }
@@ -61,7 +64,6 @@ export default function Home({ mapCoordinatesSections }) {
       handleShow();
     }
   };
-
 
   useEffect(() => {
     // Fetch Excel data when the component mounts
@@ -177,7 +179,6 @@ export default function Home({ mapCoordinatesSections }) {
 
     // fetchExcelData();
 
-
     const polylineData = mapCoordinatesSections.map((record, index) => ({
       section_id: record.section_id,
       from_lat: state.lat,
@@ -189,9 +190,9 @@ export default function Home({ mapCoordinatesSections }) {
     }));
 
     const demoData = [
-      { POINT: 'A', EASTING: 495826.79117, NORTHING: 2794807.8545 },
-      { POINT: 'B', EASTING: 495904.83451, NORTHING: 2794811.76926 },
-      { POINT: 'C', EASTING: 495945.98545, NORTHING: 2794815.61071 },
+      { POINT: "A", EASTING: 495826.79117, NORTHING: 2794807.8545 },
+      { POINT: "B", EASTING: 495904.83451, NORTHING: 2794811.76926 },
+      { POINT: "C", EASTING: 495945.98545, NORTHING: 2794815.61071 },
       // Add more data as needed
     ];
 
@@ -208,7 +209,6 @@ export default function Home({ mapCoordinatesSections }) {
       },
       polylineData: polylineData,
     }));
-
   }, []);
 
   return (
@@ -220,7 +220,7 @@ export default function Home({ mapCoordinatesSections }) {
             show={show}
             handleClose={handleClose}
             activeSection={activeSection}
-            />
+          />
 
           <ArisRunModal
             show={isShowArisRunModal}
@@ -228,43 +228,19 @@ export default function Home({ mapCoordinatesSections }) {
             handleClose={() => setIsShowArisRunModal(false)}
           />
 
-
-          <div className="d-none d-lg-block p-0" style={{ width: "240px" }}>
-            <div className="d-flex align-items-center justify-content-between" style={{ height: "calc(100vh - 60px)" }}>
-              <div className="d-flex h-100 flex-column w-100">
-                <div className="filterone h-100 w-100 overflow-y-scroll">
-                  <button className="sticky-top">High priority sections</button>
-                  <ul className="priortySection" onClick={(e) => handleItemClick(e)}>
-                    {[...highpriorityItems].map((record, index) => (
-                      <li data-section-order= {index} key={index}>
-                        {record?.section_id}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="filtertwo h-100 w-100 overflow-y-scroll">
-                  <button className="sticky-top">Mid priority sections</button>
-                  <ul className="priortySection">
-                    {midpriority?.map((record) => (
-                      <li onClick={() => setIsShowArisRunIdModal(true)} key={record?.id}>{record?.text}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="filterthree h-100 w-100 overflow-y-scroll">
-                  <button className="sticky-top">Green sections</button>
-                  <ul className="priortySection">
-                    {greenpriority?.map((record) => (
-                      <li key={record?.id}>{record?.text}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
+          <PrioritySectionSidebar
+            highpriorityItems={highpriorityItems}
+            handleItemClick={handleItemClick}
+          />
           <div className="p-0" style={{ flex: "1", maxWidth: "100%" }}>
-            <MapComponent handleClickOnMapSectionLines={handleClickOnMapSectionLines} state={state} />
+            <PrioritySectionSidebarCanvas
+              highpriorityItems={highpriorityItems}
+              handleItemClick={handleItemClick}
+            />
+            <MapComponent
+              handleClickOnMapSectionLines={handleClickOnMapSectionLines}
+              state={state}
+            />
           </div>
         </div>
       </div>

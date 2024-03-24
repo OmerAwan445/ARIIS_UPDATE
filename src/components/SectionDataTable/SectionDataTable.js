@@ -9,7 +9,7 @@ const SectionDataTable = ({ activeSectionId }) => {
       const data = await fetchSectionsData();
 
       setSectionsData(data);
-    //   console.log(data);
+      //   console.log(data);
     };
     fetchData();
   }, []);
@@ -30,9 +30,9 @@ const SectionDataTable = ({ activeSectionId }) => {
 
   return (
     <div>
-      {filteredSection.map((section) => {
+      {filteredSection.map((section, index) => {
         return (
-          <div className="tableSection col-12 mt-4 mb-5">
+          <div className="tableSection col-12 mt-4 mb-5" key={index}>
             <CustomTable
               isExportData={true}
               columns={Object.keys(section)}

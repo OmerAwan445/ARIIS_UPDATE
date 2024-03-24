@@ -9,15 +9,15 @@ import Link from 'next/link';
 
 
 
-const SidebarMobile = ({ handleShow }) => {
+const SidebarMobile = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleOffcanvasShow = () => {
     setShow(true);
-    if (handleShow) {
-      handleShow(); // Call the handleShow function passed from the parent
-    }
+    // if (handleShow) {
+    //   handleShow(); // Call the handleShow function passed from the parent
+    // }
   };
 
   return (

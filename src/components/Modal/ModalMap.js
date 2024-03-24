@@ -152,7 +152,7 @@ function ModalMap({
               <div className="secondary-bg">
                 <div className="d-flex flex-column px-2 ">
                   {inspection?.map((record, index) => (
-                    <>
+                    <div key={index}>
                       <button
                         key={record?.id}
                         onClick={() =>
@@ -173,7 +173,7 @@ function ModalMap({
                           style={{ backgroundColor: "#C6C6C6" }}
                         />
                       )}
-                    </>
+                    </div>
                   ))}
 
                   <button
