@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
-import { FaArrowCircleDown } from "react-icons/fa";
 import PrioritySection from "./PrioritySections";
 import PriorityWrapper from "./PriorityWrapper";
+import ToggleButton from "@/utils/ToggleButton";
 
 const PrioritySectionSidebarCanvas = ({
   highpriorityItems,
@@ -16,13 +16,8 @@ const PrioritySectionSidebarCanvas = ({
 
   return (
     <>
-      <button
-        className="toggle-button d-lg-none align-self-center"
-        type="button"
-        onClick={handleOffcanvasShow}
-      >
-        <FaArrowCircleDown className="navbar-toggler-icon" />
-      </button>
+      <ToggleButton 
+      handleClick={handleOffcanvasShow}/>
 
       <Offcanvas
         show={show}

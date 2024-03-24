@@ -12,7 +12,7 @@ const MapComponent = dynamic(() => import("@/components/Map/MapComponent"), {
   ssr: false,
 });
 
-export default function Home({ mapCoordinatesSections }) {
+export default function Home({ mapCoordinatesSections,sectionPriorityData }) {
   const [show, setShow] = useState(false);
   // const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
   const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
