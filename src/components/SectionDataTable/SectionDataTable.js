@@ -19,12 +19,12 @@ const SectionDataTable = ({ activeSectionId }) => {
 
   const filteredSection = selectedSection.map((section) => {
     return {
-      "Start Chainage": section.start_chainage,
-      "End Chainage": section.end_chainage,
-      "Start Latitude": section.start_latitude,
-      "End Latitude": section.end_latitude,
-      "Start Longitude": section.start_longitude,
-      "End Longitude": section.end_longitude,
+      "Start Chainage": Number(section.start_chainage).toFixed(3),
+      "End Chainage": Number(section.end_chainage).toFixed(3),
+      "Start Latitude": Number(section.start_latitude).toFixed(5),
+      "End Latitude": Number(section.end_latitude).toFixed(5),
+      "Start Longitude": Number(section.start_longitude).toFixed(5),
+      "End Longitude": Number(section.end_longitude).toFixed(5),
     };
   });
 
