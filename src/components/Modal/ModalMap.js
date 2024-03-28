@@ -16,6 +16,34 @@ import "./style.css";
 import { fetchArisRunTableData } from "@/app/services/fetchArisRunTableData";
 import SectionDataTable from "../SectionDataTable/SectionDataTable";
 
+
+
+function formatDate(dateString) {
+  const datePart = dateString.substring(0, 8);
+
+  const year = parseInt(datePart.substring(0, 4));
+  const month = parseInt(datePart.substring(4, 6)) - 1; // Month is zero-based in JavaScript Date object
+  const day = parseInt(datePart.substring(6, 8));
+
+  const originalDate = new Date(year, month, day);
+
+  const formattedDay = originalDate.getDate().toString().padStart(2, '0');
+  const formattedMonth = new Intl.DateTimeFormat("en-US", { month: "long" }).format(originalDate);
+  const formattedYear = originalDate.getFullYear();
+
+  const formattedDateTime = `${formattedDay} ${formattedMonth} ${formattedYear}`;
+  
+  return formattedDateTime;
+}
+
+// Example usage:
+const dateString = "20240222-130737"; // Example received string
+const formattedDate = formatDate(dateString);
+console.log(formattedDate); // Output: "22 February 2024"
+
+
+
+
 function ModalMap({
   show,
   handleClose,
@@ -57,25 +85,8 @@ function ModalMap({
      const record = await fetchArisRunTableData();
      if (record.length > 0) {
        const rows = record.map((item) => {
-         // Parse the original date
-         const originalDate = new Date(item.start_datetime);
-
-         // Format the date according to the desired format
-         const formattedDate = new Intl.DateTimeFormat("en-US", {
-           day: "numeric",
-           month: "short",
-           year: "numeric",
-         }).format(originalDate);
-
-         // Get the meridiem (am/pm)
-         const meridiem = originalDate.getHours() >= 12 ? "pm" : "am";
-
-         // Construct the final formatted date/time string
-         const formattedDateTime = `${formattedDate} at ${
-           originalDate.getHours() % 12 || 12
-         }.${originalDate.getMinutes()}${meridiem}`;
-
-         return [formattedDateTime, item.run_id];
+         const formattedDate = formatDate(item.run_id);
+         return [formattedDate, item.run_id];
        });
        setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
      }
@@ -160,9 +171,11 @@ function ModalMap({
                         }
                         className="inspection-list-color rounded py-3 border-0 text-start"
                         style={
+                        
                           record.title === "Rail Profile Wear"
-                            ? { backgroundColor: "#a2191f" }
-                            : { backgroundColor: "transparent" }
+                            ? { backgroundColor: "#a2191f"  ,width: '100%'}
+                            : { backgroundColor: "transparent" ,width: '100%' }
+                            
                         }
                       >
                         <span className="d-block">{record?.title}</span>
