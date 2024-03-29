@@ -7,6 +7,7 @@ export default async function HomePage() {
   const data = await fetchMapCoordinatesSections() ?? [];
   const priorityData = await fetchPrioritySectionsData() ?? [];
   const sectionData  = await fetchSectionsData() ?? [];
+  
 
   return (
     <Home mapCoordinatesSections = { data } sectionData={sectionData} sectionPriorityData={priorityData} />

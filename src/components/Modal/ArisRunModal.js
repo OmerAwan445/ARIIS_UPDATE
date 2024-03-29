@@ -4,6 +4,7 @@ import { IoClose } from "react-icons/io5";
 
 const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
     const isShowSectionIds = AriisRunSectionIds?.length > 0;
+    const {columnArisDetail,rowArisDetail} = tableData;
     return (
         <OffcanvasWrapper
             offCanvasStyle={{ minWidth: isShowSectionIds ? `60vw` : '25vw', zIndex: "99999"}}
@@ -18,17 +19,26 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
                     <Table responsive className='custom-table vh-100 overflow-y-scroll' style={{ marginBottom: "150px", overflowY: "scroll" }}>
                         <thead className="sticky-top primary-bg mb-2">
                             <tr>
-                                <th className="fs-5">Date</th>
-                                <th className="fs-5">Run</th>
+                                {columnArisDetail?.map((col,index) => (
+                                    <th className="fs-5" key={index}>{col}</th>
+                                ))}
                             </tr>
                         </thead>
                         <tbody>
-                            {tableData.map((row, index) => (
+
+                        {rowArisDetail?.map((row,index) => (
+                             <tr key={index}>
+                                 {row.map((cell, cellIndex) => (
+                            <td key={cellIndex}>{cell}</td>
+                        ))}
+                         </tr>
+                                ))}
+                            {/* {tableData.map((row, index) => (
                                 <tr key={index}>
                                     <td>{row.date}</td>
                                     <td>{row.run}</td>
                                 </tr>
-                            ))}
+                            ))} */}
                         </tbody>
                     </Table>
                 </Col>

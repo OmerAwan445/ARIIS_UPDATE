@@ -17,6 +17,7 @@ export default function Home({ mapCoordinatesSections,sectionData,sectionPriorit
   // const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
   const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
   const [activeSection, setActiveSection] = useState(null);
+  const [arisRunModalData,setArisModalData] =useState({});
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [state, setState] = useState({
@@ -31,6 +32,8 @@ export default function Home({ mapCoordinatesSections,sectionData,sectionPriorit
     polylineData: [],
     validLatLngObjects: [],
   });
+
+
   const highpriorityItems = new Set();
 
   /* const utmProjection = "+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs";
@@ -65,7 +68,15 @@ export default function Home({ mapCoordinatesSections,sectionData,sectionPriorit
     }
   };
 
+
+  const handleArisDataFromModal = (data) => {
+    setArisModalData(data);
+ }
   useEffect(() => {
+
+    
+  
+
     // Fetch Excel data when the component mounts
 
     /*
@@ -220,11 +231,12 @@ export default function Home({ mapCoordinatesSections,sectionData,sectionPriorit
             show={show}
             handleClose={handleClose}
             activeSection={activeSection}
+            handleArisDataForHome= {handleArisDataFromModal}
           />
 
           <ArisRunModal
             show={isShowArisRunModal}
-            tableData={AriisRunTableData}
+            tableData={arisRunModalData}
             handleClose={() => setIsShowArisRunModal(false)}
           />
 
