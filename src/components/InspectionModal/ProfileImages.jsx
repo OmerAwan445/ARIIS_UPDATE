@@ -12,7 +12,7 @@ const ProfileImages = ({ profiles, isLaserProfile }) => {
             <Figure>
               <FigureImage
               style={{maxHeight:"320px"}}
-              className="w-auto"
+              className=""
                 alt={profile.title}
                 src={profile.imageUrl}
               />
