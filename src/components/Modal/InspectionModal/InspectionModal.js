@@ -61,7 +61,7 @@ const InspectionModal = ({
                   horizontal: item.horizontal,
                   vertical: item.vertical,
                 };
-              } else if (item.height_left && item.height_right && item.width_left && item.width_right ) {
+              } else if (item.height_left && item.height_right && item.width_left && item.width_right && item.d45_left && item.d45_right ) {
                 // Extract fields for collection2
                 filteredItem = {
                   
@@ -70,6 +70,8 @@ const InspectionModal = ({
                   height_right : item.height_right,
                   width_left: item.width_left ,
                   width_right : item.width_right,
+                  d45_left: item.d45_left,
+                  d45_right: item.d45_right,
                 };
               }
               
