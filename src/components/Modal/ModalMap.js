@@ -49,6 +49,7 @@ function ModalMap({
   handleClose,
   handleOpenArisRunModal,
   activeSection,
+  handleArisDataForHome
 }) {
   if (!activeSection) return null;
   const [arisRunTableData, setArisRunTableData] = useState({
@@ -71,6 +72,7 @@ function ModalMap({
     panoramicVideo: false,
     railImage: false,
     arisRun: false,
+
   });
 
   // const rowDetail = [["Straight", activeSection["chainage"], "4829.2829", "36583.2839", "257'23", "TBA"]]
@@ -87,11 +89,12 @@ function ModalMap({
           const formattedDate = formatDate(item.run_id);
           return [formattedDate, item.run_id];
         });
+        
         setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
+        handleArisDataForHome({ ...arisRunTableData, rowArisDetail: [...rows] });
       }
     };
     fetchData();
-
   }, []);
 
   // console.log(arisRunTableData);
