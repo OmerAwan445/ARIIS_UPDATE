@@ -32,7 +32,7 @@ function formatDate(dateString) {
   const formattedYear = originalDate.getFullYear();
 
   const formattedDateTime = `${formattedDay} ${formattedMonth} ${formattedYear}`;
-  
+
   return formattedDateTime;
 }
 
@@ -55,7 +55,6 @@ function ModalMap({
     columnArisDetail: ["Date", "Run"],
     rowArisDetail: [],
   });
-
   const title = activeSection?.section_id;
   const [isShowOffcanvas, setIsShowOffcanvas] = useState({
     trackGuage: false,
@@ -81,20 +80,20 @@ function ModalMap({
   }
 
   useEffect(() => {
-   const fetchData = async () => {
-     const record = await fetchArisRunTableData();
-     if (record.length > 0) {
-       const rows = record.map((item) => {
-         const formattedDate = formatDate(item.run_id);
-         return [formattedDate, item.run_id];
-       });
-       setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
-     }
-   };
-   fetchData();
+    const fetchData = async () => {
+      const record = await fetchArisRunTableData();
+      if (record.length > 0) {
+        const rows = record.map((item) => {
+          const formattedDate = formatDate(item.run_id);
+          return [formattedDate, item.run_id];
+        });
+        setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
+      }
+    };
+    fetchData();
 
   }, []);
-  
+
   // console.log(arisRunTableData);
   return (
     <>
@@ -114,6 +113,9 @@ function ModalMap({
             activeSectionID={activeSection?.section_id}
             runNum={arisRunTableData.rowArisDetail[0]?.[1]}
             dateTime={arisRunTableData.rowArisDetail[0]?.[0]}
+            kmRangeStrt={activeSection?.start_chainage}
+            kmRangeEnd={activeSection?.end_chainage}
+
 
             isShow={isShowOffcanvas[record.offCanvasName]}
             handleClose={() => toggleOffcanvas(record.offCanvasName, false)}
@@ -145,7 +147,7 @@ function ModalMap({
             </div> */}
             <div
               className="tableSection col-md-8 col-12"
-              // style={{ backgroundColor: "red" }}
+            // style={{ backgroundColor: "red" }}
             >
               <CustomTable
                 // isExportData={true}
@@ -171,11 +173,11 @@ function ModalMap({
                         }
                         className="inspection-list-color rounded py-3 border-0 text-start"
                         style={
-                        
+
                           record.title === "Rail Profile Wear"
-                            ? { backgroundColor: "#a2191f"  ,width: '100%'}
-                            : { backgroundColor: "transparent" ,width: '100%' }
-                            
+                            ? { backgroundColor: "#a2191f", width: '100%' }
+                            : { backgroundColor: "transparent", width: '100%' }
+
                         }
                       >
                         <span className="d-block">{record?.title}</span>
