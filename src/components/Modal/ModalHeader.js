@@ -15,8 +15,8 @@ const ModalHeader = ({ runNum, sectionNum, title, kmRangeStrt, kmRangeEnd, dateT
       <h2 className='fw-bold text-white'>{title}</h2>
 
       <Row className='mt-3 mb-2' style={{ color: "#D1D5DB" }}>
-          <Col xs='auto' className='d-flex align-items-baseline' ><HiLocationMarker className='me-1' color='#6b7280' /> Kilometrage start: {kmRangeStrt} km</Col>
-          <Col xs='auto' className='d-flex align-items-baseline' ><HiLocationMarker className='me-1' color='#6b7280' /> Kilometrage End: {kmRangeEnd} km</Col>
+          <Col xs='auto' className='d-flex align-items-baseline' ><HiLocationMarker className='me-1' color='#6b7280' /> Chainage start: {kmRangeStrt} km</Col>
+          <Col xs='auto' className='d-flex align-items-baseline' ><HiLocationMarker className='me-1' color='#6b7280' /> Chainage End: {kmRangeEnd} km</Col>
           <Col xs='auto' className='d-flex align-items-baseline' ><Image src={DateTimeIcon} width={12} height={12} className='me-2' alt='Date Time Icon' /> <span>Date/ time: {dateTime}</span> </Col>
       </Row>
     </>

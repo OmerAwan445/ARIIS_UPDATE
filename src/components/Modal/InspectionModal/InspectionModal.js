@@ -103,8 +103,8 @@ const InspectionModal = ({
           runNum={runNum}
           sectionNum={activeSectionID}
           title={title}
-          kmRangeStrt={kmRangeStrt}
-          kmRangeEnd={kmRangeEnd}
+          kmRangeStrt={Number(kmRangeStrt).toFixed(3)}
+          kmRangeEnd={Number(kmRangeEnd).toFixed(3)}
           dateTime={dateTime}
         />
         <Container fluid>

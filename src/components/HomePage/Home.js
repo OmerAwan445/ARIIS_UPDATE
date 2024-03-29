@@ -12,7 +12,7 @@ const MapComponent = dynamic(() => import("@/components/Map/MapComponent"), {
   ssr: false,
 });
 
-export default function Home({ mapCoordinatesSections,sectionPriorityData }) {
+export default function Home({ mapCoordinatesSections,sectionData,sectionPriorityData }) {
   const [show, setShow] = useState(false);
   // const [isShowArisRunIdModal, setIsShowArisRunIdModal] = useState(false);
   const [isShowArisRunModal, setIsShowArisRunModal] = useState(false);
@@ -36,7 +36,7 @@ export default function Home({ mapCoordinatesSections,sectionPriorityData }) {
   /* const utmProjection = "+proj=utm +zone=40 +datum=WGS84 +units=m +no_defs";
   const wgs84Projection = "+proj=longlat +datum=WGS84 +no_defs"; */
 
-  mapCoordinatesSections.forEach((item) => {
+  sectionData.forEach((item) => {
     const sectionId = item.section_id.replace(/^SECTION__/, "");
     item.section_id = sectionId;
     const existingItem = Array.from(highpriorityItems).find(
