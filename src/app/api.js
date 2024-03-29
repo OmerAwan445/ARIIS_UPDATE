@@ -368,6 +368,7 @@ export const inspection = [
     kmRangeStrt: RailProfile.kmRangeStrt,
     kmRangeEnd: RailProfile.kmRangeEnd,
     // dateTime: RailProfile.dateTime,
+    apiRoute:'main_rail_wear',
     isLaserProfile: true,
     profilesImages: [
       {

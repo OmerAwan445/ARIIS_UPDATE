@@ -1,9 +1,11 @@
 import React from 'react'
 import { Col } from 'react-bootstrap'
 
-function InpectionCardLayout({children , colSpace }) {
+function InpectionCardLayout({children , colSpace,width }) {
   return (
-    <Col sm={colSpace} style={{backgroundColor:"#111827"}} className='text-white px-3 py-4'>
+    <Col lg={colSpace}  style={{backgroundColor:"#111827",
+      width:`${width && width}`,
+    }} className={`text-white px-3 py-4`}>
     <div>
       {children}
     </div>

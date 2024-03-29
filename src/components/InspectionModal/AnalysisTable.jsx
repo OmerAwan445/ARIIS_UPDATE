@@ -2,17 +2,27 @@ import { Table } from "react-bootstrap";
 
 const AnalysisTable = ({ tableData }) => {
   // Extract field names dynamically from the first item in the tableData array
+  if (!tableData || tableData.length === 0) {
+    return null; // Return null if tableData is empty or undefined
+  }
   const fields = Object.keys(tableData[0] || {});
   const fieldNames = fields.map(
-    (key) => key.charAt(0).toUpperCase() + key.slice(1)
+    (key) => { 
+       const words = key.replace(/[^a-zA-Z0-9]/g, ' ').split(/\s|-|\//);
+
+    // Capitalize the first letter of each word and join them back with spaces
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+
+    return capitalizedWords;
+  }
   );
 
   return (
-    <div>
+    <div >
       <h6 className="text-uppercase fw-bold mb-3">RAIL PROFILE WEAR</h6>
       <h3 className="fw-fw-lighter">Analysis against Thresholds</h3>
-      <div className="table-wrapper-scroll-y my-custom-scrollbar">
-        <Table className="custom-table">
+      <div className="table-wrapper-scroll-x my-custom-scrollbar">
+        <Table className="custom-table" responsive  >
           <thead>
             <tr>
               {/* Render table headers dynamically */}

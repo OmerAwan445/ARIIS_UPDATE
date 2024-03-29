@@ -35,13 +35,14 @@ const InspectionModal = ({
       if (isShow && apiRoute) {
         try {
           const data = await fetchAnalysisAgainstThresholds(apiRoute);
-          // console.log(data);
+          console.log(data);
 
           const filter = data.filter((item) => {
             const sectionId = item.section_id.replace(/^SECTION__/, "");
+            console.log(sectionId===activeSectionID,sectionId,activeSectionID);
             return sectionId === activeSectionID;
           });
-          // console.log(filter);
+          console.log(filter);
 
           const filteredData =
             filter?.map((item,index) => {
@@ -60,12 +61,26 @@ const InspectionModal = ({
                   horizontal: item.horizontal,
                   vertical: item.vertical,
                 };
+              } else if (item.height_left && item.height_right && item.width_left && item.width_right ) {
+                // Extract fields for collection2
+                filteredItem = {
+                  
+                  chainage: item.chainage,
+                  height_left: item.height_left ,
+                  height_right : item.height_right,
+                  width_left: item.width_left ,
+                  width_right : item.width_right,
+                };
               }
+              
               return filteredItem;
             }) ?? [];
-
+              
           if (filteredData.length > 0) {
             setAnalysisAgainstThresholds(filteredData);
+          } else {
+            setAnalysisAgainstThresholds([]);
+
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -94,16 +109,16 @@ const InspectionModal = ({
         />
         <Container fluid>
           <Row className="mt-4 gap-3">
-            <InpectionCardLayout colSpace={7}>
+            <InpectionCardLayout colSpace={7} >
               <ProfileImages
                 isLaserProfile={isLaserProfile}
                 profiles={profilesImages}
               />
             </InpectionCardLayout>
-            <InpectionCardLayout>
+            <InpectionCardLayout width={'38.77%'}>
               <AnalysisTable
                 tableData={
-                  analysisAgainstThresholds.length >= 0
+                  analysisAgainstThresholds.length > 0
                     ? analysisAgainstThresholds
                     : analysisTableData
                 }
