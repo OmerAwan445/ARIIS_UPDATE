@@ -36,14 +36,6 @@ function formatDate(dateString) {
   return formattedDateTime;
 }
 
-// Example usage:
-const dateString = "20240222-130737"; // Example received string
-const formattedDate = formatDate(dateString);
-console.log(formattedDate); // Output: "22 February 2024"
-
-
-
-
 function ModalMap({
   show,
   handleClose,

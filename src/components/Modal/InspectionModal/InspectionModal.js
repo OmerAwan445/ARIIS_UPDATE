@@ -9,6 +9,7 @@ import ParametersAndCondtions from "../../InspectionModal/ParametersAndCondtions
 import ModalHeader from "../ModalHeader";
 import OffcanvasWrapper from "../OffcanvasWrapper";
 import { BackBtn } from "./BackBtn";
+import ScatterPlot from "@/components/ScatterPlotChart/ScatterPlot";
 
 const InspectionModal = ({
   title,
@@ -29,20 +30,23 @@ const InspectionModal = ({
   const [analysisAgainstThresholds, setAnalysisAgainstThresholds] = useState(
     []
   );
+  const [profileLeft,setProfileLeft] = useState();
+  const [profileRight,setProfileRight] = useState();
 
+    // const profileLeft  = [];
   useEffect(() => {
     const fetchData = async () => {
       if (isShow && apiRoute) {
         try {
           const data = await fetchAnalysisAgainstThresholds(apiRoute);
-          console.log(data);
+          // console.log(data);
 
           const filter = data.filter((item) => {
             const sectionId = item.section_id.replace(/^SECTION__/, "");
-            console.log(sectionId===activeSectionID,sectionId,activeSectionID);
+            // console.log(sectionId===activeSectionID,sectionId,activeSectionID);
             return sectionId === activeSectionID;
           });
-          console.log(filter);
+          // console.log(filter);
 
           const filteredData =
             filter?.map((item,index) => {
@@ -62,7 +66,8 @@ const InspectionModal = ({
                   vertical: item.vertical,
                 };
               } else if (item.height_left && item.height_right && item.width_left && item.width_right && item.d45_left && item.d45_right ) {
-                // Extract fields for collection2
+                
+                
                 filteredItem = {
                   
                   chainage: item.chainage,
@@ -73,6 +78,12 @@ const InspectionModal = ({
                   d45_left: item.d45_left,
                   d45_right: item.d45_right,
                 };
+                
+                // profileLeft=item?.profile_left?.map(([x, y]) => ({ x, y }));
+                // profileRight= [...item.profile_right.map(([x, y]) => ({ x, y }))];
+                // console.log(profileLeft);
+                setProfileLeft(item?.profile_left?.map(([x, y]) => ({ x, y })));
+                setProfileRight(item?.profile_right?.map(([x, y]) => ({ x, y })));
               }
               
               return filteredItem;
@@ -92,7 +103,6 @@ const InspectionModal = ({
 
     fetchData();
   }, [isShow, apiRoute, activeSectionID]);
-
   return (
     <OffcanvasWrapper
       offCanvasStyle={{ minWidth: "90vw", zIndex: "99999" }}
@@ -112,10 +122,12 @@ const InspectionModal = ({
         <Container fluid>
           <Row className="mt-4 gap-3">
             <InpectionCardLayout colSpace={7} >
-              <ProfileImages
+              {/* <ProfileImages
                 isLaserProfile={isLaserProfile}
                 profiles={profilesImages}
-              />
+                /> */}
+                <ScatterPlot profileLeft = {profileLeft} profileRight={profileRight}/>
+
             </InpectionCardLayout>
             <InpectionCardLayout width={'38.77%'}>
               <AnalysisTable
