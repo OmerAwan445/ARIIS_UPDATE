@@ -79,15 +79,23 @@ function ModalMap({
       if (record.length > 0) {
         const rows = record.map((item) => {
           const formattedDate = formatDate(item.run_id);
-          return [formattedDate, item.run_id];
+          return { formattedDate, runId: item.run_id }; // Return an object instead of an array
         });
         
-        setArisRunTableData({ ...arisRunTableData, rowArisDetail: [...rows] });
-        handleArisDataForHome({ ...arisRunTableData, rowArisDetail: [...rows] });
+        rows.sort((a, b) => {
+          const dateA = new Date(a.formattedDate);
+          const dateB = new Date(b.formattedDate);
+          return dateB - dateA;
+        });
+        
+        const sortedRows = rows.map((row) => [row.formattedDate, row.runId]);
+        setArisRunTableData({ ...arisRunTableData, rowArisDetail: sortedRows });
+        handleArisDataForHome({ ...arisRunTableData, rowArisDetail: sortedRows });
       }
     };
     fetchData();
   }, []);
+  
 
   // console.log(arisRunTableData);
   return (
