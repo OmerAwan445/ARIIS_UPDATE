@@ -44,7 +44,7 @@ const AnalysisTable = ({ tableData }) => {
                   const formattedValue =
                     typeof fieldValue === "number" &&
                     !isNaN(fieldValue) &&
-                    fieldName !== "index"
+                    fieldName !== "index" && fieldName !== "id"
                       ? Number(fieldValue).toFixed(3)
                       : fieldValue;
                   return <td key={index}>{formattedValue}</td>;

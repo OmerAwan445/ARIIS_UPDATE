@@ -1,20 +1,19 @@
-import { fetchAnalysisAgainstThresholds } from "@/app/services/fetchAnalysisAgainstThresholds";
-import AnalysisTable from "@/components/InspectionModal/AnalysisTable";
-import ProfileImages from "@/components/InspectionModal/ProfileImages";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
-import InpectionCardLayout from "../../InspectionModal/InpectionCardLayout";
-import ParametersAndCondtions from "../../InspectionModal/ParametersAndCondtions";
-import ModalHeader from "../ModalHeader";
+import Slider from "@mui/material/Slider";
+import Image from "next/image";
 import OffcanvasWrapper from "../OffcanvasWrapper";
-import { BackBtn } from "./BackBtn";
+import ModalHeader from "../ModalHeader";
+import InpectionCardLayout from "../../InspectionModal/InpectionCardLayout";
+import AnalysisTable from "@/components/InspectionModal/AnalysisTable";
 import ScatterPlot from "@/components/ScatterPlotChart/ScatterPlot";
+import ParametersAndCondtions from "../../InspectionModal/ParametersAndCondtions";
+import { fetchAnalysisAgainstThresholds } from "@/app/services/fetchAnalysisAgainstThresholds";
+import { BackBtn } from "./BackBtn";
 
 const InspectionModal = ({
   title,
   runNum,
-  // sectionNum,
   kmRangeStrt,
   kmRangeEnd,
   dateTime,
@@ -27,73 +26,57 @@ const InspectionModal = ({
   apiRoute,
   activeSectionID,
 }) => {
-  const [analysisAgainstThresholds, setAnalysisAgainstThresholds] = useState(
-    []
-  );
-  const [profileLeft,setProfileLeft] = useState();
-  const [profileRight,setProfileRight] = useState();
+  const [data, setData] = useState([]);
+  const [sliderValue, setSliderValue] = useState(0);
+  const [selectedData, setSelectedData] = useState({});
+  const [tableData, setTableData] = useState({});
+  const [profileLeft, setProfileLeft] = useState();
+  const [profileRight, setProfileRight] = useState();
 
-    // const profileLeft  = [];
   useEffect(() => {
     const fetchData = async () => {
       if (isShow && apiRoute) {
         try {
-          const data = await fetchAnalysisAgainstThresholds(apiRoute);
-          // console.log(data);
+          const fetchedData = await fetchAnalysisAgainstThresholds(apiRoute);
+          const filteredData = fetchedData
+            .filter(
+              (item) =>
+                item.section_id.replace(/^SECTION__/, "") === activeSectionID
+            )
+            .sort((a, b) => parseFloat(a.chainage) - parseFloat(b.chainage)); // Ensure chainage is treated as a number for sorting
 
-          const filter = data.filter((item) => {
-            const sectionId = item.section_id.replace(/^SECTION__/, "");
-            // console.log(sectionId===activeSectionID,sectionId,activeSectionID);
-            return sectionId === activeSectionID;
-          });
-          // console.log(filter);
-
-          const filteredData =
-            filter?.map((item,index) => {
-              let filteredItem = {};
-              if (item.gauge) {
-                // Extract fields for collection1
-                filteredItem = {
-                  index:index+1,
-                  chainage: item.chainage,
-                  gauge: item.gauge,
-                };
-              } else if (item.horizontal && item.vertical) {
-                // Extract fields for collection2
-                filteredItem = {
-                  chainage: item.chainage,
-                  horizontal: item.horizontal,
-                  vertical: item.vertical,
-                };
-              } else if (item.height_left && item.height_right && item.width_left && item.width_right && item.d45_left && item.d45_right ) {
-                
-                
-                filteredItem = {
-                  
-                  chainage: item.chainage,
-                  height_left: item.height_left ,
-                  height_right : item.height_right,
-                  width_left: item.width_left ,
-                  width_right : item.width_right,
-                  d45_left: item.d45_left,
-                  d45_right: item.d45_right,
-                };
-                
-                // profileLeft=item?.profile_left?.map(([x, y]) => ({ x, y }));
-                // profileRight= [...item.profile_right.map(([x, y]) => ({ x, y }))];
-                // console.log(profileLeft);
-                setProfileLeft(item?.profile_left?.map(([x, y]) => ({ x, y })));
-                setProfileRight(item?.profile_right?.map(([x, y]) => ({ x, y })));
-              }
-              
-              return filteredItem;
-            }) ?? [];
-              
+          setData(filteredData);
           if (filteredData.length > 0) {
-            setAnalysisAgainstThresholds(filteredData);
-          } else {
-            setAnalysisAgainstThresholds([]);
+            setSliderValue(0); // Initialize slider to the first index
+            selectDataByIndex(0); // Initialize with the first data entry
+            setSelectedData(filteredData[0]);
+            // Extract only the first five columns you are interested in
+            const {
+              chainage,
+              height_left,
+              height_right,
+              width_left,
+              width_right,
+            } = filteredData[0];
+            const newSelectedData = {
+              chainage,
+              height_left,
+              height_right,
+              width_left,
+              width_right,
+            };
+            setTableData(newSelectedData);
 
+            setProfileLeft(
+              filteredData[0]?.profile_left
+                ?.filter(([x, y]) => x <= 200 && y <= 200)
+                .map(([x, y]) => ({ x, y }))
+            );
+            setProfileRight(
+              filteredData[0]?.profile_right
+                ?.filter(([x, y]) => x <= 200 && y <= 200)
+                .map(([x, y]) => ({ x, y }))
+            );
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -103,6 +86,47 @@ const InspectionModal = ({
 
     fetchData();
   }, [isShow, apiRoute, activeSectionID]);
+
+  const selectDataByIndex = (index) => {
+    if (data[index]) {
+      // Extract only the first five columns you are interested in
+      const { chainage, height_left, height_right, width_left, width_right } =
+        data[index];
+      const newSelectedData = {
+        chainage,
+        height_left,
+        height_right,
+        width_left,
+        width_right,
+      };
+
+      // console.log("Select Data for index:", index, newSelectedData);
+      setSelectedData(data[index]); // Set the full data for other uses
+      setTableData(newSelectedData); // Set the trimmed data for the table
+      setProfileLeft(
+        data[index]?.profile_left
+          ?.filter(([x, y]) => x <= 200 && y <= 200)
+          .map(([x, y]) => ({ x, y }))
+      );
+      setProfileRight(
+        data[index]?.profile_right
+          ?.filter(([x, y]) => x <= 200 && y <= 200)
+          .map(([x, y]) => ({ x, y }))
+      );
+    }
+  };
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+    selectDataByIndex(newValue);
+  };
+
+  // Prepare marks for the slider based on data indices and chainage values
+  const sliderMarks = data.map((item, index) => ({
+    value: index,
+    label: `${item.chainage}`,
+  }));
+
   return (
     <OffcanvasWrapper
       offCanvasStyle={{ minWidth: "90vw", zIndex: "99999" }}
@@ -121,33 +145,48 @@ const InspectionModal = ({
         />
         <Container fluid>
           <Row className="mt-4 gap-3">
-            <InpectionCardLayout colSpace={7} >
-              {/* <ProfileImages
-                isLaserProfile={isLaserProfile}
-                profiles={profilesImages}
-                /> */}
-                <ScatterPlot profileLeft = {profileLeft} profileRight={profileRight}/>
-
-            </InpectionCardLayout>
-            <InpectionCardLayout width={'38.77%'}>
-              <AnalysisTable
-                tableData={
-                  analysisAgainstThresholds.length > 0
-                    ? analysisAgainstThresholds
-                    : analysisTableData
-                }
+            <InpectionCardLayout colSpace={4}>
+              <ScatterPlot
+                profileLeft={profileLeft || []}
+                profileRight={"NONE"}
               />
+            </InpectionCardLayout>
+            <InpectionCardLayout colSpace={4}>
+              <ScatterPlot
+                profileLeft={"NONE"}
+                profileRight={profileRight || []}
+              />
+            </InpectionCardLayout>
+            <InpectionCardLayout width={"30.77%"}>
+              <AnalysisTable tableData={tableData ? [tableData] : []} />
             </InpectionCardLayout>
           </Row>
           <Row className="mt-4 gap-3">
-            <InpectionCardLayout colSpace={7}>
-              <Image
-                src={MeasurementImage}
-                width={0}
-                height={0}
-                className="w-100"
-                alt="Measurement"
-              />
+            <InpectionCardLayout colSpace={8}>
+              <>
+                <Image
+                  src={MeasurementImage}
+                  width={0}
+                  height={0}
+                  className="w-100"
+                  alt="Measurement"
+                />
+                {data.length > 0 && (
+                  <Slider
+                    value={sliderValue}
+                    sx={{
+                      height:15,
+                      borderRadius: 0,
+                    }}  
+                    onChange={handleSliderChange}
+                    aria-labelledby="discrete-slider"
+                    valueLabelDisplay="on"
+                    // marks={sliderMarks}
+                    min={0}
+                    max={data.length - 1}
+                  />
+                )}
+              </>
             </InpectionCardLayout>
             <InpectionCardLayout>
               <ParametersAndCondtions sectionId={activeSectionID} />
@@ -158,4 +197,5 @@ const InspectionModal = ({
     </OffcanvasWrapper>
   );
 };
+
 export default InspectionModal;
