@@ -3,6 +3,9 @@ import { Table } from "react-bootstrap";
 import ExportDataToExcel from "../common/ExportDataToExcel";
 
 export const CustomTable = ({ columns, rows, title, isExportData }) => {
+  // Extracting the first three rows
+  const topThreeRows = rows.slice(0, 3);
+
   return (
     <>
       <div>
@@ -24,7 +27,7 @@ export const CustomTable = ({ columns, rows, title, isExportData }) => {
             </tr>
           </thead>
           <tbody>
-            {rows?.map((rowData, rowIndex) => (
+            {topThreeRows?.map((rowData, rowIndex) => (
               <tr key={rowIndex}>
                 {rowData.map((cellData, cellIndex) => (
                   <td key={cellIndex}>{cellData}</td>

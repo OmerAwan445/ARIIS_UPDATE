@@ -15,26 +15,27 @@ import VideoImageModal from "./VideoImageModal/VideoImageModal";
 import "./style.css";
 import { fetchArisRunTableData } from "@/app/services/fetchArisRunTableData";
 import SectionDataTable from "../SectionDataTable/SectionDataTable";
+import {FormatArisDate} from '@/utils/FormatArisDate'
 
 
 
-function formatDate(dateString) {
-  const datePart = dateString.substring(0, 8);
+// function formatDate(dateString) {
+//   const datePart = dateString.substring(0, 8);
 
-  const year = parseInt(datePart.substring(0, 4));
-  const month = parseInt(datePart.substring(4, 6)) - 1; // Month is zero-based in JavaScript Date object
-  const day = parseInt(datePart.substring(6, 8));
+//   const year = parseInt(datePart.substring(0, 4));
+//   const month = parseInt(datePart.substring(4, 6)) - 1; // Month is zero-based in JavaScript Date object
+//   const day = parseInt(datePart.substring(6, 8));
 
-  const originalDate = new Date(year, month, day);
+//   const originalDate = new Date(year, month, day);
 
-  const formattedDay = originalDate.getDate().toString().padStart(2, '0');
-  const formattedMonth = new Intl.DateTimeFormat("en-US", { month: "long" }).format(originalDate);
-  const formattedYear = originalDate.getFullYear();
+//   const formattedDay = originalDate.getDate().toString().padStart(2, '0');
+//   const formattedMonth = new Intl.DateTimeFormat("en-US", { month: "long" }).format(originalDate);
+//   const formattedYear = originalDate.getFullYear();
 
-  const formattedDateTime = `${formattedDay} ${formattedMonth} ${formattedYear}`;
+//   const formattedDateTime = `${formattedDay} ${formattedMonth} ${formattedYear}`;
 
-  return formattedDateTime;
-}
+//   return formattedDateTime;
+// }
 
 function ModalMap({
   show,
@@ -78,7 +79,7 @@ function ModalMap({
       const record = await fetchArisRunTableData();
       if (record.length > 0) {
         const rows = record.map((item) => {
-          const formattedDate = formatDate(item.run_id);
+          const formattedDate = FormatArisDate(item.run_id);
           return { formattedDate, runId: item.run_id }; // Return an object instead of an array
         });
         

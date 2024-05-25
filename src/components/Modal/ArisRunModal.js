@@ -2,7 +2,7 @@ import { Button, Col, Row, Stack, Table } from "react-bootstrap";
 import OffcanvasWrapper from "./OffcanvasWrapper";
 import { IoClose } from "react-icons/io5";
 
-const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
+const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds ,onRunIdClick,onSectionIdClick }) => {
     const isShowSectionIds = AriisRunSectionIds?.length > 0;
     const {columnArisDetail,rowArisDetail} = tableData;
     return (
@@ -12,11 +12,13 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
             handleClose={handleClose}
             bodyClassname={isShowSectionIds ? 'custom-offcanvas-body' : 'overflow-hidden'}
             CloseButtonComponent={CloseButton}
+            toogleCanvas={true}
+            toogleScroll={true}
         >
             <Row>
                 <Col className={`${isShowSectionIds ? 'col-12 col-md-6 col-xl-7 col-xxl-8' : 'col-12'} order-2 order-md-1 h-100`}>
                     <h3 className="fw-medium fs-4">ARIIS runs</h3>
-                    <Table responsive className='custom-table vh-100 overflow-y-scroll' style={{ marginBottom: "150px", overflowY: "scroll" }}>
+                    <Table responsive className='custom-table overflow-y-scroll' style={{ marginBottom: "150px", overflowY: "scroll" }}>
                         <thead className="sticky-top primary-bg mb-2">
                             <tr>
                                 {columnArisDetail?.map((col,index) => (
@@ -27,18 +29,12 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
                         <tbody>
 
                         {rowArisDetail?.map((row,index) => (
-                             <tr key={index}>
+                             <tr style={{cursor:'pointer'}} key={index} onClick={() => onRunIdClick(row[1])}>
                                  {row.map((cell, cellIndex) => (
                             <td key={cellIndex}>{cell}</td>
                         ))}
                          </tr>
                                 ))}
-                            {/* {tableData.map((row, index) => (
-                                <tr key={index}>
-                                    <td>{row.date}</td>
-                                    <td>{row.run}</td>
-                                </tr>
-                            ))} */}
                         </tbody>
                     </Table>
                 </Col>
@@ -48,7 +44,7 @@ const ArisRunModal = ({ show, handleClose, tableData, AriisRunSectionIds }) => {
                         {AriisRunSectionIds.map((id, index) => (
                             <>
                                 {index !== 0 && index % 4 === 0 && <hr className="my-2 text-bg-light" />}
-                                <span key={index}>Section ID #{id}</span>
+                                <span style={{cursor:'pointer'}} onClick={() => onSectionIdClick(id)} key={index}>Section ID #{id}</span>
                             </>
                         ))}
                     </Stack>
