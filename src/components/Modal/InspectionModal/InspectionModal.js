@@ -121,6 +121,18 @@ const InspectionModal = ({
     selectDataByIndex(newValue);
   };
 
+
+  const handleImageClick = (event) => {
+    // Calculate the position of the click relative to the image width
+    const clickPosition = event.nativeEvent.offsetX;
+    const imageWidth = event.target.clientWidth;
+    const newPosition = Math.floor((clickPosition / imageWidth) * (data.length - 1));
+  
+    // Update the slider value with the calculated position
+    setSliderValue(newPosition);
+    selectDataByIndex(newPosition); // Update selected data based on the new position
+  };
+
   // Prepare marks for the slider based on data indices and chainage values
   const sliderMarks = data.map((item, index) => ({
     value: index,
@@ -144,7 +156,7 @@ const InspectionModal = ({
           dateTime={dateTime}
         />
         <Container fluid>
-          <Row className="mt-4 gap-3">
+          <Row className="mt-4 gap-2">
             <InpectionCardLayout colSpace={4}>
               <ScatterPlot
                 profileLeft={profileLeft || []}
@@ -170,20 +182,33 @@ const InspectionModal = ({
                   height={0}
                   className="w-100"
                   alt="Measurement"
+                  onClick={handleImageClick}
+                  style={{cursor:'pointer'}}
                 />
                 {data.length > 0 && (
                   <Slider
                     value={sliderValue}
                     sx={{
-                      height:15,
+                      height: "60%",
+                      width: "96%",
                       borderRadius: 0,
-                    }}  
+                      position: "absolute",
+                      left: "2%",
+                      top: "0%",
+                      bottom: "8%",
+                      '& .MuiSlider-rail, & .MuiSlider-track': {
+                        opacity: 0
+                      }
+                    }}
                     onChange={handleSliderChange}
                     aria-labelledby="discrete-slider"
                     valueLabelDisplay="on"
+                    valueLabelFormat={(value) => (data[value]?.chainage).toFixed(3)}
                     // marks={sliderMarks}
                     min={0}
                     max={data.length - 1}
+                    // Uncomment the line below to hide the slider 
+                    // style={{display:'none'}}
                   />
                 )}
               </>
